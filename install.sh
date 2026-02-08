@@ -126,7 +126,7 @@ install_global() {
     for skill in "${skills[@]}"; do
         mkdir -p "$GLOBAL_SKILLS_DIR/$skill"
         cp "$KIT_DIR/global-skills/$skill/SKILL.md" "$GLOBAL_SKILLS_DIR/$skill/SKILL.md"
-        print_step "Skill: /\$skill"
+        print_step "Skill: /$skill"
     done
 
     # Business Skills
