@@ -1,62 +1,62 @@
-# Tabla de Referencia Rápida de Estimación
+# Quick Estimation Reference Table
 
-## Rangos por Tipo (HH): Min | Típico | Max
+## Ranges by Type (MH): Min | Typical | Max
 
 ### Frontend
-| Tarea | Min | Típico | Max |
-|-------|-----|--------|-----|
-| Componente UI simple | 2 | 3 | 4 |
-| Formulario estándar | 4 | 6 | 8 |
-| Formulario complejo | 8 | 12 | 16 |
-| Vista listado + filtros | 8 | 12 | 16 |
-| Dashboard gráficos | 16 | 24 | 32 |
-| Wizard multi-step | 16 | 20 | 24 |
-| Mapa interactivo | 12 | 18 | 24 |
+| Task | Min | Typical | Max |
+|------|-----|---------|-----|
+| Simple UI component | 2 | 3 | 4 |
+| Standard form | 4 | 6 | 8 |
+| Complex form | 8 | 12 | 16 |
+| List view + filters | 8 | 12 | 16 |
+| Dashboard with charts | 16 | 24 | 32 |
+| Multi-step wizard | 16 | 20 | 24 |
+| Interactive map | 12 | 18 | 24 |
 
 ### Backend
-| Tarea | Min | Típico | Max |
-|-------|-----|--------|-----|
-| CRUD simple | 4 | 6 | 8 |
-| CRUD validaciones | 8 | 12 | 16 |
-| API lógica compleja | 16 | 24 | 32 |
-| Integración REST | 8 | 16 | 24 |
-| Integración SOAP | 16 | 28 | 40 |
-| Notificaciones | 16 | 20 | 24 |
-| Roles y permisos | 16 | 24 | 32 |
+| Task | Min | Typical | Max |
+|------|-----|---------|-----|
+| Simple CRUD | 4 | 6 | 8 |
+| CRUD with validations | 8 | 12 | 16 |
+| Complex logic API | 16 | 24 | 32 |
+| REST integration | 8 | 16 | 24 |
+| SOAP integration | 16 | 28 | 40 |
+| Notifications | 16 | 20 | 24 |
+| Roles and permissions | 16 | 24 | 32 |
 | Background jobs | 12 | 18 | 24 |
 | File processing | 8 | 12 | 16 |
 
 ### Infra
-| Tarea | Min | Típico | Max |
-|-------|-----|--------|-----|
+| Task | Min | Typical | Max |
+|------|-----|---------|-----|
 | Docker setup | 4 | 6 | 8 |
-| CI/CD básico | 8 | 12 | 16 |
-| CI/CD full | 16 | 24 | 32 |
-| IaC básico | 16 | 20 | 24 |
+| Basic CI/CD | 8 | 12 | 16 |
+| Full CI/CD | 16 | 24 | 32 |
+| Basic IaC | 16 | 20 | 24 |
 | Monitoring | 8 | 12 | 16 |
 
 ### QA
-| Tarea | Min | Típico | Max |
-|-------|-----|--------|-----|
-| Unit tests/módulo | 8 | 12 | 16 |
+| Task | Min | Typical | Max |
+|------|-----|---------|-----|
+| Unit tests/module | 8 | 12 | 16 |
 | Integration tests | 12 | 18 | 24 |
 | E2E tests | 16 | 24 | 32 |
 | Perf testing | 16 | 20 | 24 |
 
-## Multiplicadores
-| Factor | × |
+## Multipliers
+| Factor | x |
 |--------|---|
 | Greenfield | 1.0 |
 | Legacy | 1.3-1.5 |
-| Requisitos ambiguos | 1.2-1.4 |
-| APIs sin docs | 1.5 |
+| Ambiguous requirements | 1.2-1.4 |
+| APIs without docs | 1.5 |
 | Compliance | 1.3 |
-| Multi-idioma | 1.2 |
+| Multi-language | 1.2 |
 | Multi-tenant | 1.3-1.5 |
 
 ## Buffer
-| Claridad | % |
-|----------|---|
-| Bien definido | +15% |
-| Moderado | +25% |
-| Exploratorio | +35% |
+| Clarity | % |
+|---------|---|
+| Well defined | +15% |
+| Moderate | +25% |
+| Exploratory | +35% |

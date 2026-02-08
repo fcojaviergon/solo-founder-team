@@ -1,48 +1,48 @@
 ---
 name: write-docs
 description: >
-  Genera o actualiza documentación del proyecto. README, API docs,
-  architecture decisions. Usar cuando el founder dice "documenta",
-  "README", "docs", "documentación".
+  Generate or update project documentation. README, API docs,
+  architecture decisions. Use when the founder says "document",
+  "README", "docs", "documentation".
 ---
 
-# Documentar: $ARGUMENTS
+# Document: $ARGUMENTS
 
-## Instrucciones
+## Instructions
 
-Como solo founder, la documentación tiene dos audiencias:
-1. **Tú en 3 meses** (cuando olvides cómo funciona algo)
-2. **Claude Code** (para mantener contexto en futuras sesiones)
+As a solo founder, documentation has two audiences:
+1. **You in 3 months** (when you forget how something works)
+2. **Claude Code** (to maintain context in future sessions)
 
-### Tipos de documentación
+### Types of documentation
 
-- **README.md**: Setup, cómo correr, cómo deployar, variables de entorno
-- **docs/architecture.md**: Stack, decisiones técnicas, diagrama Mermaid
-- **docs/decisions/**: ADRs para decisiones importantes (usa /log-decision)
-- **CLAUDE.md**: Reglas para Claude (actualizar cuando se aprende algo nuevo)
-- **Inline comments**: Solo para "por qué", nunca para "qué"
+- **README.md**: Setup, how to run, how to deploy, environment variables
+- **docs/architecture.md**: Stack, technical decisions, Mermaid diagram
+- **docs/decisions/**: ADRs for important decisions (use /log-decision)
+- **CLAUDE.md**: Rules for Claude (update when something new is learned)
+- **Inline comments**: Only for "why", never for "what"
 
-### Regla de oro
-Documenta lo que no es obvio del código.
-No documentes lo que TypeScript ya expresa.
+### Golden rule
+Document what is not obvious from the code.
+Don't document what TypeScript already expresses.
 
-### Para README.md incluir siempre:
+### For README.md always include:
 ```
 ## Setup
-1. Clonar repo
-2. Instalar dependencias: npm install
-3. Copiar .env.example a .env y configurar variables
-4. Correr desarrollo: npm run dev
+1. Clone repo
+2. Install dependencies: npm install
+3. Copy .env.example to .env and configure variables
+4. Run development: npm run dev
 
-## Scripts disponibles
-- npm run dev — desarrollo local
-- npm run build — build de producción
+## Available scripts
+- npm run dev — local development
+- npm run build — production build
 - npm run lint — biome check
 - npm run test — tests
 
 ## Stack
-[lista de tecnologías con versiones]
+[list of technologies with versions]
 
-## Arquitectura
-[diagrama o descripción breve]
+## Architecture
+[diagram or brief description]
 ```

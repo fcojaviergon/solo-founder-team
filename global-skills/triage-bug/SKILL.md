@@ -1,40 +1,40 @@
 ---
 name: triage-bug
 description: >
-  Diagnostica y clasifica un bug. Encuentra la causa raíz y propone
-  fix. Usar cuando el founder reporta un error, bug, o algo que
-  no funciona. Trigger: "bug", "error", "no funciona", "se rompe",
-  "falla", "crash".
+  Diagnose and classify a bug. Find the root cause and propose
+  a fix. Use when the founder reports an error, bug, or something
+  that doesn't work. Trigger: "bug", "error", "doesn't work",
+  "broken", "fails", "crash".
 ---
 
 # Triage Bug: $ARGUMENTS
 
-## Instrucciones
+## Instructions
 
-1. **Reproducir**: Entender los pasos para reproducir
-2. **Localizar**: Usar grep/search para encontrar código relevante
-3. **Diagnosticar**: Identificar la causa raíz (no el síntoma)
-4. **Clasificar**:
-   - 🔥 CRÍTICO: Afecta a todos los usuarios, data loss, security
-   - ⚠️ ALTO: Feature rota para muchos usuarios
-   - 📋 MEDIO: Bug visible pero con workaround
-   - 📝 BAJO: Cosmético o edge case raro
-5. **Proponer fix**: Describir el cambio necesario con archivos afectados
-6. **Verificar**: Después del fix, correr:
-   - Tests relevantes
+1. **Reproduce**: Understand the steps to reproduce
+2. **Locate**: Use grep/search to find relevant code
+3. **Diagnose**: Identify the root cause (not the symptom)
+4. **Classify**:
+   - CRITICAL: Affects all users, data loss, security
+   - HIGH: Broken feature for many users
+   - MEDIUM: Visible bug with workaround
+   - LOW: Cosmetic or rare edge case
+5. **Propose fix**: Describe the necessary change with affected files
+6. **Verify**: After the fix, run:
+   - Relevant tests
    - `npx @biomejs/biome check ./src`
    - `npm run build`
-7. **Preguntar**: "¿Arreglo ahora o lo agendo?"
+7. **Ask**: "Should I fix it now or schedule it?"
 
-Si es CRÍTICO: no preguntes, arréglalo directamente.
+If CRITICAL: don't ask, fix it directly.
 
-## Registro
-Agregar el bug en docs/bugs-encontrados.md:
+## Log
+Add the bug in docs/bugs-found.md:
 ```
-### [fecha] - [título corto]
-- **Severidad**: [CRÍTICO/ALTO/MEDIO/BAJO]
-- **Síntoma**: [qué se observa]
-- **Causa raíz**: [por qué pasa]
-- **Fix**: [qué se hizo / qué hay que hacer]
-- **Archivos**: [archivos afectados]
+### [date] - [short title]
+- **Severity**: [CRITICAL/HIGH/MEDIUM/LOW]
+- **Symptom**: [what is observed]
+- **Root cause**: [why it happens]
+- **Fix**: [what was done / what needs to be done]
+- **Files**: [affected files]
 ```

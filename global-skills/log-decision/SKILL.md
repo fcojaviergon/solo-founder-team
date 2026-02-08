@@ -1,45 +1,45 @@
 ---
 name: log-decision
 description: >
-  Registra una decisión técnica o de producto como ADR. Usar cuando se
-  toma una decisión importante: elegir librería, cambiar patrón, definir
-  API, etc. Trigger: "registra decisión", "ADR", "por qué elegimos",
-  "decisión técnica", "log decision".
+  Record a technical or product decision as an ADR. Use when an
+  important decision is made: choosing a library, changing a pattern,
+  defining an API, etc. Trigger: "log decision", "ADR", "why did we
+  choose", "technical decision", "record decision".
 ---
 
-# Registrar Decisión: $ARGUMENTS
+# Log Decision: $ARGUMENTS
 
-## Instrucciones
+## Instructions
 
-Crear ADR en docs/decisions/YYYY-MM-DD-[slug].md:
+Create ADR at docs/decisions/YYYY-MM-DD-[slug].md:
 
 ```markdown
-# ADR: [Título]
+# ADR: [Title]
 
-**Fecha**: [hoy]
-**Estado**: Aceptada | Propuesta | Reemplazada por [link]
+**Date**: [today]
+**Status**: Accepted | Proposed | Superseded by [link]
 
-## Problema
-[1-2 oraciones]
+## Problem
+[1-2 sentences]
 
-## Opciones Consideradas
-1. **[Opción A]**: [breve]
-   - ✅ Pro: ...
-   - ❌ Con: ...
-2. **[Opción B]**: [breve]
-   - ✅ Pro: ...
-   - ❌ Con: ...
+## Options Considered
+1. **[Option A]**: [brief]
+   - Pro: ...
+   - Con: ...
+2. **[Option B]**: [brief]
+   - Pro: ...
+   - Con: ...
 
-## Decisión
-Elegimos **[Opción X]** porque [razón en 1 oración].
+## Decision
+We chose **[Option X]** because [reason in 1 sentence].
 
-## Consecuencias
-- [Qué cambia]
-- [Qué deuda técnica acepta]
-- [Cuándo reconsiderar]
+## Consequences
+- [What changes]
+- [What tech debt it accepts]
+- [When to reconsider]
 ```
 
-## Reglas
-- Máximo 1 página
-- "Consecuencias" es la sección más importante
-- Actualizar índice en docs/decisions/README.md
+## Rules
+- Max 1 page
+- "Consequences" is the most important section
+- Update the index at docs/decisions/README.md

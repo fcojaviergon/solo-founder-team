@@ -1,36 +1,36 @@
-# Plan de Desarrollo de Producto (PDP)
-## [Nombre del Proyecto]
+# Product Development Plan (PDP)
+## [Project Name]
 
-**Fecha**: [fecha]  
-**Preparado por**: [nombre]  
-**Versión**: 1.0  
-**Estado**: Borrador
-
----
-
-## 1. Resumen Ejecutivo
-
-[Qué es, para quién, qué problema resuelve, esfuerzo estimado en HH y semanas]
+**Date**: [date]
+**Prepared by**: [name]
+**Version**: 1.0
+**Status**: Draft
 
 ---
 
-## 2. Alcance
+## 1. Executive Summary
+
+[What it is, who it's for, what problem it solves, estimated effort in MH and weeks]
+
+---
+
+## 2. Scope
 
 ### In Scope
-- [funcionalidad 1]
+- [feature 1]
 
-### ⚠️ Out of Scope
-- [exclusión 1]
+### Out of Scope
+- [exclusion 1]
 
-### Supuestos
-- [supuesto 1]
+### Assumptions
+- [assumption 1]
 
 ---
 
-## 3. Arquitectura Propuesta
+## 3. Proposed Architecture
 
-| Capa | Tecnología |
-|------|------------|
+| Layer | Technology |
+|-------|------------|
 | Frontend | |
 | Backend | |
 | DB | |
@@ -47,50 +47,50 @@ graph TB
 
 ## 4. WBS
 
-| ID | Módulo | Tarea | Tipo | Complejidad | HH | Perfil | Riesgo |
-|----|--------|-------|------|-------------|-----|--------|--------|
+| ID | Module | Task | Type | Complexity | MH | Profile | Risk |
+|----|--------|------|------|------------|-----|---------|------|
 
 ---
 
-## 5. Resumen de Estimación
+## 5. Estimation Summary
 
-### Por Módulo
-| Módulo | HH | % |
+### By Module
+| Module | MH | % |
 |--------|-----|---|
 
-### Totales
-| Concepto | HH |
-|----------|-----|
+### Totals
+| Concept | MH |
+|---------|-----|
 | Subtotal | |
 | Buffer (%) | |
 | **TOTAL** | |
 
 ---
 
-## 6. Cronograma
+## 6. Timeline
 
-| Semana | Actividad | HH |
-|--------|-----------|-----|
-
----
-
-## 7. Equipo Sugerido
-
-| Perfil | Dedicación | Período |
-|--------|-----------|---------|
+| Week | Activity | MH |
+|------|----------|-----|
 
 ---
 
-## 8. Riesgos
+## 7. Suggested Team
 
-| Riesgo | Probabilidad | Impacto | Mitigación |
-|--------|-------------|---------|------------|
+| Profile | Dedication | Period |
+|---------|-----------|--------|
 
 ---
 
-## 9. Exclusiones y Condiciones
+## 8. Risks
 
-1. Estimaciones asumen APIs de terceros documentadas
-2. No incluye migración de datos legacy
-3. Cambios de alcance requieren re-estimación
-4. UAT es responsabilidad del cliente
+| Risk | Probability | Impact | Mitigation |
+|------|------------|--------|------------|
+
+---
+
+## 9. Exclusions and Conditions
+
+1. Estimates assume documented third-party APIs
+2. Does not include legacy data migration
+3. Scope changes require re-estimation
+4. UAT is the client's responsibility

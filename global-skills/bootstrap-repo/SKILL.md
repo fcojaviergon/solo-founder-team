@@ -1,72 +1,72 @@
 ---
 name: bootstrap-repo
 description: >
-  Analiza un repositorio completo y genera un resumen ejecutivo de su
-  arquitectura, stack, patrones, y estado actual. Usar cuando se abre
-  un proyecto por primera vez, se retoma después de tiempo, o se necesita
-  contexto rápido. Trigger: "analiza este repo", "onboarding",
-  "qué hay aquí", "dame contexto", "bootstrap".
+  Analyze a complete repository and generate an executive summary of its
+  architecture, stack, patterns, and current state. Use when opening
+  a project for the first time, resuming after a while, or needing
+  quick context. Trigger: "analyze this repo", "onboarding",
+  "what's here", "give me context", "bootstrap".
 context: fork
 agent: Explore
 allowed-tools: Read, Grep, Glob, Bash
 ---
 
-# Bootstrap de Repositorio
+# Repository Bootstrap
 
-Eres un arquitecto haciendo onboarding a un repo nuevo.
-Genera un resumen ejecutivo en < 2 minutos de lectura.
+You are an architect doing onboarding to a new repo.
+Generate an executive summary in < 2 minutes of reading.
 
-## Pasos
+## Steps
 
 1. **Stack**
    - package.json / requirements.txt / go.mod / Cargo.toml
    - Frameworks (Next.js, Django, Spring, etc.)
-   - Base de datos (migrations, schemas, prisma)
+   - Database (migrations, schemas, prisma)
 
-2. **Estructura**
-   - Directorios primer y segundo nivel
-   - Patrón arquitectónico (MVC, Clean Arch, Monolito, Microservicios)
-   - Conteo archivos por tipo
+2. **Structure**
+   - First and second level directories
+   - Architectural pattern (MVC, Clean Arch, Monolith, Microservices)
+   - File count by type
 
-3. **Patrones**
+3. **Patterns**
    - Auth: JWT, sessions, OAuth?
    - API: REST, GraphQL, tRPC?
-   - Estado: Redux, Zustand, Context?
-   - Testing: Jest, Vitest, Pytest? Cobertura?
+   - State: Redux, Zustand, Context?
+   - Testing: Jest, Vitest, Pytest? Coverage?
    - Linting: Biome, ESLint, Prettier?
 
-4. **Estado**
+4. **Status**
    - `git log --oneline -10`
-   - CI/CD configurado?
-   - Deuda técnica visible (TODOs, hacks)
-   - Tests pasan?
-   - Build compila?
+   - CI/CD configured?
+   - Visible tech debt (TODOs, hacks)
+   - Tests pass?
+   - Build compiles?
 
 5. **Output** → docs/repo-overview.md
 
 ```
-# Repo Overview: [nombre]
-**Generado**: [fecha]
+# Repo Overview: [name]
+**Generated**: [date]
 
 ## Stack
 Frontend: [...] | Backend: [...] | DB: [...] | Infra: [...]
 
-## Arquitectura
-[2-3 líneas + diagrama ASCII]
+## Architecture
+[2-3 lines + ASCII diagram]
 
-## Módulos Principales
-- /src/[modulo1]: [qué hace]
-- /src/[modulo2]: [qué hace]
+## Main Modules
+- /src/[module1]: [what it does]
+- /src/[module2]: [what it does]
 
-## Estado Actual
-- Último commit: [fecha + mensaje]
-- Tests: [pasan/fallan/no hay]
-- Build: [compila/falla/no configurado]
-- Lint: [Biome/ESLint/ninguno]
-- CI/CD: [sí/no]
-- Deuda técnica: [alta/media/baja]
+## Current Status
+- Last commit: [date + message]
+- Tests: [pass/fail/none]
+- Build: [compiles/fails/not configured]
+- Lint: [Biome/ESLint/none]
+- CI/CD: [yes/no]
+- Tech debt: [high/medium/low]
 
-## Puntos de Atención
-- [punto 1]
-- [punto 2]
+## Points of Attention
+- [point 1]
+- [point 2]
 ```

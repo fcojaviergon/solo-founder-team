@@ -2,7 +2,7 @@
 # ============================================================
 # Solo Founder SDLC Kit — Remote Installer
 # ============================================================
-# Uso:
+# Usage:
 #   curl -fsSL https://raw.githubusercontent.com/fcojaviergon/solo-founder-team/main/remote-install.sh | bash
 #   curl -fsSL https://raw.githubusercontent.com/fcojaviergon/solo-founder-team/main/remote-install.sh | bash -s -- init
 # ============================================================

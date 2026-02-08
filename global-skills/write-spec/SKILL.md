@@ -1,76 +1,76 @@
 ---
 name: write-spec
 description: >
-  Genera una especificación formal para features complejas antes de
-  planificar. Usar SOLO cuando la feature toca 10+ archivos, tiene
-  integraciones externas, lógica de negocio compleja, o múltiples
-  stakeholders. NO usar para CRUDs simples, UI changes, o fixes.
-  Trigger: "spec", "especificación", "write spec", "necesito definir
-  bien esto antes", "esto es complejo".
+  Generate a formal specification for complex features before
+  planning. Use ONLY when the feature touches 10+ files, has
+  external integrations, complex business logic, or multiple
+  stakeholders. DO NOT use for simple CRUDs, UI changes, or fixes.
+  Trigger: "spec", "specification", "write spec", "I need to
+  define this well first", "this is complex".
 ---
 
 # Spec: $ARGUMENTS
 
-## Cuándo usar este skill
+## When to use this skill
 
-✅ Usar cuando:
-- Feature toca 10+ archivos o 3+ módulos
-- Hay integraciones externas (APIs, webhooks, servicios)
-- Lógica de negocio con reglas y edge cases
-- Migración de datos o cambio de schema
-- Feature que afecta auth, pagos, o datos sensibles
-- Vas a delegarlo a subagents paralelos
+Use when:
+- Feature touches 10+ files or 3+ modules
+- There are external integrations (APIs, webhooks, services)
+- Business logic with rules and edge cases
+- Data migration or schema change
+- Feature that affects auth, payments, or sensitive data
+- You're going to delegate to parallel subagents
 
-❌ NO usar cuando:
-- CRUD simple
-- Cambio de UI/estilos
+DO NOT use when:
+- Simple CRUD
+- UI/style change
 - Bug fix
-- Feature < 5 archivos con lógica clara
-→ En esos casos, ve directo a /plan-feature
+- Feature < 5 files with clear logic
+→ In those cases, go directly to /plan-feature
 
-## Instrucciones
+## Instructions
 
-### Fase 1: Discovery (con el founder)
+### Phase 1: Discovery (with the founder)
 
-Preguntar solo lo necesario:
-1. "¿Qué problema resuelve para el usuario final?"
-2. "¿Hay restricciones técnicas o de negocio?"
-3. "¿Qué NO debe hacer?" (out of scope)
+Ask only what's necessary:
+1. "What problem does it solve for the end user?"
+2. "Are there technical or business constraints?"
+3. "What should it NOT do?" (out of scope)
 
-Si hay repo, usar Explore para escanear el código afectado.
+If there's a repo, use Explore to scan the affected code.
 
-### Fase 2: Generar Spec
+### Phase 2: Generate Spec
 
-Crear specs/[nombre-feature].md (máximo 1-2 páginas):
+Create specs/[feature-name].md (max 1-2 pages):
 
 ```markdown
-# Spec: [Nombre de la Feature]
+# Spec: [Feature Name]
 
-**Autor**: [nombre]
-**Fecha**: [hoy]
-**Estado**: Draft | Aprobada | Implementada
-**Complejidad**: Alta | Muy Alta
+**Author**: [name]
+**Date**: [today]
+**Status**: Draft | Approved | Implemented
+**Complexity**: High | Very High
 
-## Problema
-[2-3 oraciones. Qué problema existe y para quién.]
+## Problem
+[2-3 sentences. What problem exists and for whom.]
 
-## Solución Propuesta
-[Descripción concisa de la solución. Incluir diagrama Mermaid
-si hay flujo complejo o interacción entre servicios.]
+## Proposed Solution
+[Concise description of the solution. Include Mermaid diagram
+if there's a complex flow or interaction between services.]
 
 ## Acceptance Criteria
-Usar formato EARS cuando aplique:
+Use EARS format when applicable:
 - WHEN [trigger], the system SHALL [behavior]
 - WHILE [state], the system SHALL [behavior]
 - WHERE [condition], the system SHALL [behavior]
 
-Ejemplos concretos:
-1. WHEN usuario sube archivo > 10MB, SHALL mostrar error con límite
-2. WHEN webhook falla 3 veces, SHALL pausar y notificar por email
-3. WHILE usuario no verificado, SHALL bloquear acceso a billing
+Concrete examples:
+1. WHEN user uploads file > 10MB, SHALL show error with limit
+2. WHEN webhook fails 3 times, SHALL pause and notify by email
+3. WHILE user not verified, SHALL block access to billing
 
-## Interfaces / Contratos
-[Endpoints, schemas, payloads — solo si aplica]
+## Interfaces / Contracts
+[Endpoints, schemas, payloads — only if applicable]
 
 ```typescript
 // POST /api/v1/feature
@@ -83,49 +83,49 @@ interface Response {
 ```
 
 ## Out of Scope
-- [Explícito: qué NO se va a hacer]
+- [Explicit: what will NOT be done]
 
-## Dependencias
-- [Servicios externos, APIs, otros módulos]
+## Dependencies
+- [External services, APIs, other modules]
 
-## Riesgos
-| Riesgo | Impacto | Mitigación |
-|--------|---------|------------|
+## Risks
+| Risk | Impact | Mitigation |
+|------|--------|------------|
 
 ## Tasks Preview
-[Lista numerada de alto nivel, ~5-8 tareas máximo.
-El detalle fino lo hace /plan-feature después.]
-1. [tarea 1]
-2. [tarea 2]
+[High-level numbered list, ~5-8 tasks max.
+The fine detail is done by /plan-feature afterwards.]
+1. [task 1]
+2. [task 2]
 ...
 ```
 
-### Fase 3: Review
+### Phase 3: Review
 
-Presentar al founder y preguntar:
-- "¿Los acceptance criteria cubren lo que necesitas?"
-- "¿Falta algo en out of scope?"
-- "¿Apruebas para pasar a /plan-feature?"
+Present to the founder and ask:
+- "Do the acceptance criteria cover what you need?"
+- "Is anything missing from out of scope?"
+- "Do you approve to move to /plan-feature?"
 
-### Fase 4: Handoff
+### Phase 4: Handoff
 
-Una vez aprobada:
-1. Marcar estado como "Aprobada"
-2. Sugerir: "Corro /plan-feature @specs/[nombre].md para generar el plan?"
-3. El /plan-feature lee el spec y genera el plan detallado en active-plan.md
-4. Si la feature es grande, sugerir pattern de subagents:
-   "Cada tarea del plan la puede ejecutar un subagent aislado
-   con commit atómico después de cada una."
+Once approved:
+1. Mark status as "Approved"
+2. Suggest: "Should I run /plan-feature @specs/[name].md to generate the plan?"
+3. /plan-feature reads the spec and generates the detailed plan in active-plan.md
+4. If the feature is large, suggest subagent pattern:
+   "Each task in the plan can be executed by an isolated subagent
+   with an atomic commit after each one."
 
-## Reglas
+## Rules
 
-1. **Máximo 2 páginas** — si necesitas más, la feature es demasiado grande.
-   Divídela en 2+ specs.
-2. **Acceptance criteria > prosa** — el spec es un contrato, no un ensayo.
-   Cada criterio debe ser testeable.
-3. **No sobre-especificar** — dejar espacio para decisiones de implementación.
-   El spec dice QUÉ, no CÓMO (salvo restricciones técnicas reales).
-4. **Out of scope es obligatorio** — protege al founder de scope creep,
-   especialmente en proyectos de consultoría.
-5. **El spec se versiona** — vive en specs/ dentro del repo, se commitea,
-   y se puede referenciar desde PRs y ADRs.
+1. **Max 2 pages** — if you need more, the feature is too large.
+   Split it into 2+ specs.
+2. **Acceptance criteria > prose** — the spec is a contract, not an essay.
+   Each criterion must be testable.
+3. **Don't over-specify** — leave room for implementation decisions.
+   The spec says WHAT, not HOW (except for real technical constraints).
+4. **Out of scope is mandatory** — protects the founder from scope creep,
+   especially in consulting projects.
+5. **The spec is versioned** — lives in specs/ within the repo, is committed,
+   and can be referenced from PRs and ADRs.

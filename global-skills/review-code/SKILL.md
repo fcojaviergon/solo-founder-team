@@ -1,10 +1,10 @@
 ---
 name: review-code
 description: >
-  Revisa el código como un senior developer. Busca bugs, problemas
-  de seguridad, y oportunidades de simplificación. Verifica convenciones
-  del proyecto. Usar antes de mergear o cuando el founder dice
-  "revisa", "review", "code review".
+  Review code like a senior developer. Look for bugs, security
+  issues, and simplification opportunities. Verify project conventions.
+  Use before merging or when the founder says
+  "review", "code review", "check this".
 context: fork
 agent: Explore
 allowed-tools: Read, Grep, Glob
@@ -12,38 +12,38 @@ allowed-tools: Read, Grep, Glob
 
 # Code Review
 
-## Instrucciones
+## Instructions
 
-Revisa los cambios como un senior developer pragmático.
-No busques perfección, busca problemas reales.
+Review the changes like a pragmatic senior developer.
+Don't look for perfection, look for real problems.
 
-### Obtener contexto
-1. `git diff main --stat` para ver el scope del cambio
-2. Si el proyecto tiene skills custom de frontend/backend en
-   .claude/skills/, revisa que se sigan esas convenciones
+### Get context
+1. `git diff main --stat` to see the scope of the change
+2. If the project has custom frontend/backend skills in
+   .claude/skills/, verify those conventions are followed
 
 ### Checklist
 
-1. **Seguridad**: ¿Inputs sin validar? ¿SQL injection? ¿XSS?
-   ¿Auth bypass? ¿Secrets hardcodeados?
-2. **Bugs**: ¿Null checks? ¿Race conditions? ¿Error handling?
-   ¿Tipos incorrectos?
-3. **Simplicidad**: ¿Algo se puede simplificar sin perder claridad?
-   ¿Hay dead code?
-4. **Performance**: ¿N+1 queries? ¿Re-renders innecesarios?
-   ¿Bundle size? ¿Imports pesados sin tree-shaking?
-5. **Consistencia**: ¿Sigue las convenciones del proyecto?
-   ¿Naming correcto? ¿Estructura de carpetas?
-6. **Convenciones del proyecto**: ¿El código sigue las convenciones
-   definidas en los skills de frontend/backend del proyecto?
-7. **Build health**: ¿Hay imports que podrían romper el build?
-   ¿Tipos exportados correctamente?
+1. **Security**: Unvalidated inputs? SQL injection? XSS?
+   Auth bypass? Hardcoded secrets?
+2. **Bugs**: Null checks? Race conditions? Error handling?
+   Incorrect types?
+3. **Simplicity**: Can something be simplified without losing clarity?
+   Is there dead code?
+4. **Performance**: N+1 queries? Unnecessary re-renders?
+   Bundle size? Heavy imports without tree-shaking?
+5. **Consistency**: Does it follow project conventions?
+   Correct naming? Folder structure?
+6. **Project conventions**: Does the code follow the conventions
+   defined in the project's frontend/backend skills?
+7. **Build health**: Are there imports that could break the build?
+   Types exported correctly?
 
 ### Output
-Clasifica hallazgos en:
-- 🔴 BLOCKER: Debe arreglarse antes de mergear
-- 🟡 MEJORA: Debería arreglarse, puede ser después
-- 💡 SUGERENCIA: Nice to have
+Classify findings as:
+- BLOCKER: Must be fixed before merging
+- IMPROVEMENT: Should be fixed, can be done later
+- SUGGESTION: Nice to have
 
-NO reportes: estilo cosmético (Biome lo maneja), imports ordering,
-o cosas que el linter/formatter atrapa automáticamente.
+DO NOT report: cosmetic style (Biome handles it), import ordering,
+or things that the linter/formatter catches automatically.

@@ -1,53 +1,53 @@
 ---
 name: plan-feature
 description: >
-  Planifica una nueva feature. Analiza requisitos, define scope,
-  identifica riesgos y genera un plan de implementación accionable.
-  Usar cuando el founder dice "quiero agregar...", "necesito...",
-  "planifica...", "nueva feature", "plan".
+  Plan a new feature. Analyze requirements, define scope,
+  identify risks and generate an actionable implementation plan.
+  Use when the founder says "I want to add...", "I need...",
+  "plan...", "new feature", "plan".
 ---
 
 # Plan Feature: $ARGUMENTS
 
-## Instrucciones
+## Instructions
 
-Eres el Tech Lead planificando para un solo developer. Sé pragmático.
+You are the Tech Lead planning for a solo developer. Be pragmatic.
 
-### Paso 1: Entender el Requisito
-- ¿Qué problema resuelve para el usuario?
-- ¿Cuál es el comportamiento esperado (happy path)?
-- ¿Qué edge cases importan?
+### Step 1: Understand the Requirement
+- What problem does it solve for the user?
+- What is the expected behavior (happy path)?
+- What edge cases matter?
 
-### Paso 2: Análisis de Impacto
-Usa subagents Explore para escanear el codebase:
-- ¿Qué archivos se tocan?
-- ¿Hay dependencias o conflictos?
-- ¿Se necesitan migraciones de DB?
+### Step 2: Impact Analysis
+Use Explore subagents to scan the codebase:
+- What files are affected?
+- Are there dependencies or conflicts?
+- Are DB migrations needed?
 
-### Paso 3: Generar Plan
-Escribe en docs/active-plan.md:
+### Step 3: Generate Plan
+Write to docs/active-plan.md:
 
 ```
-## Feature: [nombre]
-**Fecha**: [hoy]
-**Estimación**: [S/M/L]
-**Branch**: feat/[nombre-corto]
+## Feature: [name]
+**Date**: [today]
+**Estimate**: [S/M/L]
+**Branch**: feat/[short-name]
 
-### Tareas (ordenadas)
-1. [ ] Tarea 1 — archivo(s) afectados
-2. [ ] Tarea 2 — archivo(s) afectados
+### Tasks (ordered)
+1. [ ] Task 1 — affected file(s)
+2. [ ] Task 2 — affected file(s)
 ...
 
-### Riesgos
-- Riesgo 1: mitigación
+### Risks
+- Risk 1: mitigation
 
-### Criterios de Done
-- [ ] Tests pasan
-- [ ] Build exitoso (npm run build)
-- [ ] Biome check pasa (npx @biomejs/biome check ./src)
-- [ ] Feature funciona en happy path
+### Done Criteria
+- [ ] Tests pass
+- [ ] Build succeeds (npm run build)
+- [ ] Biome check passes (npx @biomejs/biome check ./src)
+- [ ] Feature works on happy path
 ```
 
-### Paso 4: Confirmar con el Founder
-Presenta el plan y espera aprobación antes de implementar.
-Pregunta: "¿Ajusto algo del plan o procedemos?"
+### Step 4: Confirm with the Founder
+Present the plan and wait for approval before implementing.
+Ask: "Should I adjust anything in the plan or shall we proceed?"

@@ -1,37 +1,37 @@
 ---
 name: time-track
 description: >
-  Registra tiempo trabajado en una tarea o módulo. Mantiene log de
-  horas reales para comparar contra estimaciones del PDP y facturación.
-  Trigger: "registra tiempo", "time track", "horas", "trabajé en",
-  "cuánto llevamos", "reporte horas".
+  Record time worked on a task or module. Maintains a log of
+  actual hours to compare against PDP estimates and billing.
+  Trigger: "log time", "time track", "hours", "I worked on",
+  "how much have we spent", "hours report".
 ---
 
 # Time Track: $ARGUMENTS
 
-## Instrucciones
+## Instructions
 
-### Registrar tiempo
-Agregar línea en docs/timesheet.csv:
+### Log time
+Add a line to docs/timesheet.csv:
 ```
-fecha,proyecto,modulo,tarea,hh_reales,hh_estimadas,notas
+date,project,module,task,actual_mh,estimated_mh,notes
 ```
-Si no existe, crearlo con los headers.
+If it doesn't exist, create it with the headers.
 
-### Consultar avance ("cuánto llevamos?")
-Leer timesheet.csv, agrupar por módulo, comparar con PDP si existe:
+### Check progress ("how much have we spent?")
+Read timesheet.csv, group by module, compare with PDP if exists:
 
 ```
-| Módulo | HH Est. | HH Real | Desviación | Estado |
-|--------|---------|---------|------------|--------|
-| Auth   | 32      | 28      | -12%       | ✅ OK  |
-| Core   | 80      | 92      | +15%       | ⚠️     |
-| TOTAL  | 152     | 132     | -13%       | ✅ OK  |
+| Module | Est. MH | Actual MH | Deviation | Status |
+|--------|---------|-----------|-----------|--------|
+| Auth   | 32      | 28        | -12%      | OK     |
+| Core   | 80      | 92        | +15%      | Warning|
+| TOTAL  | 152     | 132       | -13%      | OK     |
 ```
 
-### Reporte mensual ("reporte de horas")
-Resumen agrupado por proyecto y módulo del mes.
+### Monthly report ("hours report")
+Summary grouped by project and module for the month.
 
-### Alerta automática
-Si desviación real > +25% en un módulo, alertar proactivamente
-y sugerir revisar scope o estimación.
+### Automatic alert
+If actual deviation > +25% on a module, proactively alert
+and suggest reviewing scope or estimation.

@@ -1,45 +1,45 @@
 ---
 name: commit-ship
 description: >
-  Prepara y envía los cambios. Genera commit message, crea PR,
-  y prepara para deploy. Usar cuando el founder dice "shippea",
-  "manda", "commit", "PR", "push", "ship it".
+  Prepare and ship the changes. Generate commit message, create PR,
+  and prepare for deploy. Use when the founder says "ship",
+  "commit", "PR", "push", "ship it", "send it".
 disable-model-invocation: true
 ---
 
 # Ship: $ARGUMENTS
 
-## Contexto actual
+## Current context
 - Branch: !`git branch --show-current`
 - Status: !`git status --short`
 - Diff stats: !`git diff --stat`
 
 ## Pre-flight checks
 
-Antes de commitear, verificar:
-1. `npx @biomejs/biome check ./src` → debe pasar
-2. `npm run build` → debe compilar
-Si alguno falla, arreglar primero. NO shippear código roto.
+Before committing, verify:
+1. `npx @biomejs/biome check ./src` → must pass
+2. `npm run build` → must compile
+If either fails, fix first. DO NOT ship broken code.
 
-## Instrucciones
+## Instructions
 
-1. Stage los cambios apropiados (git add)
-2. Genera commit message con Conventional Commits:
-   - Analiza el diff para determinar el tipo (feat/fix/chore/docs/refactor)
-   - Scope basado en la carpeta principal afectada
-   - Descripción clara y concisa en inglés
-   - Body opcional en español si el cambio es complejo
+1. Stage the appropriate changes (git add)
+2. Generate commit message with Conventional Commits:
+   - Analyze the diff to determine the type (feat/fix/chore/docs/refactor)
+   - Scope based on the main affected folder
+   - Clear and concise description in English
+   - Optional body if the change is complex
 3. Commit
-4. Push a origin
-5. Crea PR con:
-   - Título = commit message
-   - Body = resumen de cambios + link al plan si existe
-   - Labels apropiados si el repo los usa
-6. Reporta: URL del PR y siguiente paso recomendado
+4. Push to origin
+5. Create PR with:
+   - Title = commit message
+   - Body = summary of changes + link to plan if exists
+   - Appropriate labels if the repo uses them
+6. Report: PR URL and recommended next step
 
-## Reglas
-- Si el diff es > 500 líneas, DETENTE y pregunta si debemos
-  dividir en commits más pequeños
-- No incluir archivos de build (.next/, dist/, node_modules/)
-- No incluir .env ni secrets
-- Si hay archivos nuevos no trackeados que parecen temporales, preguntar
+## Rules
+- If the diff is > 500 lines, STOP and ask if we should
+  split into smaller commits
+- Do not include build files (.next/, dist/, node_modules/)
+- Do not include .env or secrets
+- If there are new untracked files that look temporary, ask

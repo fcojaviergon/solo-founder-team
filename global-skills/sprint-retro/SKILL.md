@@ -1,10 +1,10 @@
 ---
 name: sprint-retro
 description: >
-  Genera una mini-retrospectiva del sprint o período de trabajo. Analiza
-  qué se hizo, qué salió bien/mal, y propone mejoras al CLAUDE.md y
-  workflow. Usar al final de cada semana o sprint.
-  Trigger: "retro", "retrospectiva", "qué aprendimos", "review semana".
+  Generate a mini-retrospective for the sprint or work period. Analyze
+  what was done, what went well/badly, and propose improvements to
+  CLAUDE.md and workflow. Use at the end of each week or sprint.
+  Trigger: "retro", "retrospective", "what did we learn", "week review".
 context: fork
 agent: Explore
 allowed-tools: Read, Grep, Glob, Bash
@@ -12,51 +12,51 @@ allowed-tools: Read, Grep, Glob, Bash
 
 # Sprint Retro
 
-## Pasos
+## Steps
 
-1. **Recopilar datos**
-   - `git log --oneline --since="1 week ago"` (o período indicado)
-   - docs/active-plan.md: completado vs. planificado
-   - docs/decisions/ recientes
-   - `grep -r "TODO\|FIXME\|HACK" src/` (nuevos esta semana)
+1. **Gather data**
+   - `git log --oneline --since="1 week ago"` (or indicated period)
+   - docs/active-plan.md: completed vs. planned
+   - Recent docs/decisions/
+   - `grep -r "TODO\|FIXME\|HACK" src/` (new this week)
 
-2. **Analizar**
-   - Tareas que tomaron más de lo estimado — ¿por qué?
-   - Bugs o regresiones — ¿qué los causó?
-   - Errores repetidos de Claude → candidatos a reglas CLAUDE.md
-   - Build failures — ¿causas comunes?
+2. **Analyze**
+   - Tasks that took longer than estimated — why?
+   - Bugs or regressions — what caused them?
+   - Repeated Claude mistakes → candidates for CLAUDE.md rules
+   - Build failures — common causes?
 
-3. **Generar** docs/retros/YYYY-MM-DD-retro.md
+3. **Generate** docs/retros/YYYY-MM-DD-retro.md
 
 ```markdown
-# Retro: [Fecha]
+# Retro: [Date]
 
-## Métricas
+## Metrics
 - Commits: [N]
-- Tareas completadas: [X de Y]
-- Bugs encontrados/resueltos: [N/N]
+- Tasks completed: [X of Y]
+- Bugs found/resolved: [N/N]
 - Build failures: [N]
 
-## ✅ Qué funcionó
-- [cosa 1]
+## What Worked
+- [thing 1]
 
-## ❌ Qué no funcionó
-- [cosa 1]: [por qué] → [acción]
+## What Didn't Work
+- [thing 1]: [why] → [action]
 
-## 🔧 Mejoras al Workflow
-- [ ] Agregar a CLAUDE.md: "[regla]"
-- [ ] Crear/modificar skill: [cuál]
-- [ ] Agregar/ajustar hook: [cuál]
+## Workflow Improvements
+- [ ] Add to CLAUDE.md: "[rule]"
+- [ ] Create/modify skill: [which]
+- [ ] Add/adjust hook: [which]
 
-## 📋 Carry-over
-- [tarea pendiente]
+## Carry-over
+- [pending task]
 ```
 
-4. **Proponer actualizaciones a CLAUDE.md**
-   Si hay errores repetidos, proponer reglas nuevas
-   y pedir confirmación antes de editar.
+4. **Propose CLAUDE.md updates**
+   If there are repeated mistakes, propose new rules
+   and ask for confirmation before editing.
 
-5. **Si hay timesheet (docs/timesheet.csv)**
-   Comparar HH reales vs. estimadas por módulo.
-   Actualizar estimation-reference.md del PDP si la
-   desviación es consistente (>20% en mismo tipo de tarea).
+5. **If there's a timesheet (docs/timesheet.csv)**
+   Compare actual MH vs. estimated by module.
+   Update the PDP estimation-reference.md if the
+   deviation is consistent (>20% on the same task type).

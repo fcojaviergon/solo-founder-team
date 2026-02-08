@@ -1,51 +1,51 @@
-# CLAUDE.md — [NOMBRE_PROYECTO]
+# CLAUDE.md — [PROJECT_NAME]
 
-## Proyecto
-[NOMBRE_PROYECTO] — [Descripción en una línea]
-Stack: [ej: Next.js 15 + Supabase + Tailwind + Vercel]
-Solo founder: optimizar para velocidad de shipping con calidad mínima viable.
+## Project
+[PROJECT_NAME] — [One-line description]
+Stack: [e.g.: Next.js 15 + Supabase + Tailwind + Vercel]
+Solo founder: optimize for shipping speed with minimum viable quality.
 
-## Principios
-- Ship small, ship often. PRs < 300 líneas.
-- Tests para lógica de negocio crítica. No 100% coverage.
-- Conventional commits siempre (feat/fix/chore/docs/refactor).
-- Si algo puede fallar en producción, necesita error handling.
-- Cada error de Claude se convierte en una regla aquí abajo.
+## Principles
+- Ship small, ship often. PRs < 300 lines.
+- Tests for critical business logic. No 100% coverage.
+- Conventional commits always (feat/fix/chore/docs/refactor).
+- If something can fail in production, it needs error handling.
+- Every Claude mistake becomes a rule below.
 
-## Arquitectura
-Ver docs/architecture.md para decisiones completas.
-- [COMPLETAR: patrón arquitectónico]
-- [COMPLETAR: capas principales]
+## Architecture
+See docs/architecture.md for full decisions.
+- [TODO: architectural pattern]
+- [TODO: main layers]
 
-## Convenciones de Código
+## Code Conventions
 - TypeScript strict mode
-- Nombres en inglés, comentarios en español cuando añadan valor
-- Componentes: PascalCase. Hooks: use + camelCase
-- Archivos: kebab-case.tsx
+- Names in English, comments in English when they add value
+- Components: PascalCase. Hooks: use + camelCase
+- Files: kebab-case.tsx
 
-## Herramientas
-- **Linter/Formatter**: Biome (NO usar Prettier ni ESLint)
-- **Ejecutar lint**: `npx @biomejs/biome check --write ./src`
+## Tools
+- **Linter/Formatter**: Biome (DO NOT use Prettier or ESLint)
+- **Run lint**: `npx @biomejs/biome check --write ./src`
 - **Build**: `npm run build`
 - **Tests**: `npm run test`
 - **Type check**: `npx tsc --noEmit`
 
-## Skills del Proyecto
-Este proyecto tiene skills custom que definen convenciones específicas:
-- Frontend: .claude/skills/[TU-SKILL-FRONTEND]/SKILL.md
-- Backend: .claude/skills/[TU-SKILL-BACKEND]/SKILL.md
-Siempre consultar estos skills antes de implementar nuevo código.
+## Project Skills
+This project has custom skills that define specific conventions:
+- Frontend: .claude/skills/[YOUR-FRONTEND-SKILL]/SKILL.md
+- Backend: .claude/skills/[YOUR-BACKEND-SKILL]/SKILL.md
+Always consult these skills before implementing new code.
 
 ## Workflow
-Spec (solo si complejo) → Plan → Implement → Test → Review → Ship
-Skills globales disponibles en ~/.claude/skills/ para cada fase.
-Usar /write-spec solo para features de 10+ archivos o integraciones.
-Usar subagents para tareas pesadas que contaminen contexto.
+Spec (only if complex) → Plan → Implement → Test → Review → Ship
+Global skills available at ~/.claude/skills/ for each phase.
+Use /write-spec only for features with 10+ files or integrations.
+Use subagents for heavy tasks that pollute context.
 
-## Contexto Actual
-Plan activo: docs/active-plan.md
-Specs: specs/ (solo features complejas)
+## Current Context
+Active plan: docs/active-plan.md
+Specs: specs/ (complex features only)
 
-## Reglas Aprendidas
-<!-- Agregar reglas aquí cada vez que Claude cometa un error repetido -->
-<!-- Ejemplo: "No usar fetch directo, siempre usar el wrapper api.ts" -->
+## Learned Rules
+<!-- Add rules here every time Claude makes a repeated mistake -->
+<!-- Example: "Don't use fetch directly, always use the api.ts wrapper" -->

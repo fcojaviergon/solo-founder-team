@@ -1,64 +1,64 @@
 ---
 name: test-verify
 description: >
-  Escribe tests y verifica que la implementación funciona.
-  Incluye verificación de build y biome.
-  Usar después de implementar, o cuando el founder dice
-  "testea", "verifica", "check", "funciona?".
+  Write tests and verify the implementation works.
+  Includes build and biome verification.
+  Use after implementing, or when the founder says
+  "test", "verify", "check", "does it work?".
 context: fork
 agent: general-purpose
 allowed-tools: Read, Grep, Glob, Bash, Write
 ---
 
-# Verificar Implementación
+# Verify Implementation
 
-## Instrucciones
+## Instructions
 
-1. Lee docs/active-plan.md para entender los criterios de done
-2. Identifica qué se implementó revisando los cambios recientes:
+1. Read docs/active-plan.md to understand the done criteria
+2. Identify what was implemented by reviewing recent changes:
    - `git diff main --name-only`
-3. Para cada componente/función modificada:
-   - ¿Tiene test? Si no, escribe uno para el happy path
-   - ¿El test cubre el edge case más peligroso? Agrega si no
-4. Ejecuta la suite de tests completa
-5. Si hay errores, arregla el código (no el test)
+3. For each modified component/function:
+   - Does it have a test? If not, write one for the happy path
+   - Does the test cover the most dangerous edge case? Add if not
+4. Run the full test suite
+5. If there are errors, fix the code (not the test)
 
-## Verificación de Build & Lint (OBLIGATORIO)
+## Build & Lint Verification (MANDATORY)
 
-Después de que los tests pasen, ejecutar en este orden:
+After tests pass, run in this order:
 
 1. **Biome check**:
    ```bash
    npx @biomejs/biome check ./src
    ```
-   - Si hay errores de formato: `npx @biomejs/biome check --write ./src`
-   - Si hay errores de lint: arreglar manualmente
+   - If formatting errors: `npx @biomejs/biome check --write ./src`
+   - If lint errors: fix manually
 
-2. **TypeScript check** (si aplica):
+2. **TypeScript check** (if applicable):
    ```bash
    npx tsc --noEmit
    ```
-   - Arreglar todos los errores de tipo
+   - Fix all type errors
 
 3. **Build**:
    ```bash
    npm run build
    ```
-   - Si falla, analizar el error y arreglar
-   - Errores comunes: imports rotos, tipos faltantes, variables no usadas
+   - If it fails, analyze the error and fix
+   - Common errors: broken imports, missing types, unused variables
 
-4. Solo si los 3 pasan → reportar como verificado
+4. Only if all 3 pass → report as verified
 
-## Filosofía de Testing (Solo Founder)
-- Tests unitarios para lógica de negocio pura
-- Tests de integración para flujos críticos (auth, payments, data mutations)
-- NO tests para: componentes UI puros, layouts, estilos
-- Un test que atrapa un bug real > 10 tests de cobertura superficial
+## Testing Philosophy (Solo Founder)
+- Unit tests for pure business logic
+- Integration tests for critical flows (auth, payments, data mutations)
+- NO tests for: pure UI components, layouts, styles
+- One test that catches a real bug > 10 superficial coverage tests
 
 ## Output
-Reporta:
-- Tests escritos y resultado
-- Estado de biome check
-- Estado de tsc
-- Estado del build
-- Veredicto: ✅ VERIFICADO o ❌ PENDIENTE [razón]
+Report:
+- Tests written and result
+- Biome check status
+- tsc status
+- Build status
+- Verdict: VERIFIED or PENDING [reason]

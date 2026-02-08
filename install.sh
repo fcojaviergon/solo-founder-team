@@ -2,16 +2,16 @@
 # ============================================================
 # 🚀 Solo Founder SDLC Kit — Installer
 # ============================================================
-# Instala skills globales, agents, hooks y configuración base
-# para un workflow completo de desarrollo + cotización.
+# Installs global skills, agents, hooks and base configuration
+# for a complete development + quotation workflow.
 #
-# Uso:
+# Usage:
 #   chmod +x install.sh
 #   ./install.sh
 #
-# Para instalar los archivos de proyecto (CLAUDE.md, settings, 
-# skills de proyecto), corre desde la raíz de tu repo:
-#   ./install.sh --project
+# To install project files (CLAUDE.md, settings,
+# project skills), run from the root of your repo:
+#   ./install.sh init
 # ============================================================
 
 set -e
@@ -75,7 +75,7 @@ print_usage() {
 
 # ─── Install Global Skills ────────────────────────────────
 install_global() {
-    echo -e "\n${BOLD}📦 Instalando Skills Globales (~/.claude/skills/)${NC}\n"
+    echo -e "\n${BOLD}📦 Installing Global Skills (~/.claude/skills/)${NC}\n"
 
     GLOBAL_SKILLS_DIR="$HOME/.claude/skills"
     mkdir -p "$GLOBAL_SKILLS_DIR"
@@ -122,7 +122,7 @@ install_global() {
         print_step "Skill: /$skill"
     done
 
-    echo -e "\n${BOLD}🤖 Instalando Agents (~/.claude/agents/)${NC}\n"
+    echo -e "\n${BOLD}🤖 Installing Agents (~/.claude/agents/)${NC}\n"
 
     mkdir -p "$HOME/.claude/agents"
     cp "$KIT_DIR/agents/qa-tester.md" "$HOME/.claude/agents/"
@@ -130,68 +130,68 @@ install_global() {
     cp "$KIT_DIR/agents/security-reviewer.md" "$HOME/.claude/agents/"
     print_step "Agent: security-reviewer"
 
-    echo -e "\n${BOLD}⚙️  Instalando Settings Globales (~/.claude/settings.json)${NC}\n"
+    echo -e "\n${BOLD}⚙️  Installing Global Settings (~/.claude/settings.json)${NC}\n"
 
     if [ -f "$HOME/.claude/settings.json" ]; then
         cp "$HOME/.claude/settings.json" "$HOME/.claude/settings.json.backup.$(date +%s)"
-        print_warn "Backup de settings.json existente creado"
+        print_warn "Backup of existing settings.json created"
     fi
     cp "$KIT_DIR/config/global-settings.json" "$HOME/.claude/settings.json"
-    print_step "Settings globales con hooks instalados"
+    print_step "Global settings with hooks installed"
 
-    echo -e "\n${GREEN}${BOLD}✅ Instalación global completada${NC}"
-    echo -e "   Skills: ${#skills[@]} SDLC + ${#biz_skills[@]} Negocio = $((${#skills[@]} + ${#biz_skills[@]})) total"
+    echo -e "\n${GREEN}${BOLD}✅ Global installation complete${NC}"
+    echo -e "   Skills: ${#skills[@]} SDLC + ${#biz_skills[@]} Business = $((${#skills[@]} + ${#biz_skills[@]})) total"
     echo -e "   Agents: 2"
     echo -e "   Hooks: 5 (PreToolUse + PostToolUse + Stop×2 + Notification)"
 }
 
 # ─── Install Project Files ────────────────────────────────
 install_project() {
-    echo -e "\n${BOLD}📁 Instalando Archivos de Proyecto (.claude/ + docs/)${NC}\n"
+    echo -e "\n${BOLD}📁 Installing Project Files (.claude/ + docs/)${NC}\n"
 
     if [ ! -d ".git" ]; then
-        print_error "No estás en la raíz de un repositorio git."
-        print_error "Navega a tu proyecto y corre: ${CMD_NAME} init"
+        print_error "You are not at the root of a git repository."
+        print_error "Navigate to your project and run: ${CMD_NAME} init"
         exit 1
     fi
 
     PROJECT_NAME=$(basename "$(pwd)")
 
-    # .claude/settings.json (proyecto)
+    # .claude/settings.json (project)
     mkdir -p .claude
     if [ -f ".claude/settings.json" ]; then
         cp ".claude/settings.json" ".claude/settings.json.backup.$(date +%s)"
-        print_warn "Backup de .claude/settings.json existente creado"
+        print_warn "Backup of existing .claude/settings.json created"
     fi
     cp "$KIT_DIR/config/project-settings.json" ".claude/settings.json"
-    print_step ".claude/settings.json (permisos del proyecto)"
+    print_step ".claude/settings.json (project permissions)"
 
     # CLAUDE.md
     if [ -f "CLAUDE.md" ]; then
-        print_warn "CLAUDE.md ya existe — no se sobreescribe"
-        print_warn "Revisa $KIT_DIR/config/CLAUDE.md.template como referencia"
+        print_warn "CLAUDE.md already exists — not overwriting"
+        print_warn "See $KIT_DIR/config/CLAUDE.md.template for reference"
     else
-        sed "s/\[NOMBRE_PROYECTO\]/$PROJECT_NAME/g" \
+        sed "s/\[PROJECT_NAME\]/$PROJECT_NAME/g" \
             "$KIT_DIR/config/CLAUDE.md.template" > "CLAUDE.md"
-        print_step "CLAUDE.md creado (edita los [PLACEHOLDERS])"
+        print_step "CLAUDE.md created (edit the [PLACEHOLDERS])"
     fi
 
     # docs/
     mkdir -p docs/decisions docs/retros specs
     if [ ! -f "docs/active-plan.md" ]; then
-        echo "# Plan Activo\n\nNo hay plan activo. Usa /plan-feature para crear uno." \
+        echo "# Active Plan\n\nNo active plan. Use /plan-feature to create one." \
             > docs/active-plan.md
         print_step "docs/active-plan.md"
     fi
     if [ ! -f "docs/decisions/README.md" ]; then
-        echo "# Decisiones Técnicas (ADRs)\n\n| Fecha | Decisión | Estado |\n|-------|----------|--------|\n| | | |" \
+        echo "# Technical Decisions (ADRs)\n\n| Date | Decision | Status |\n|------|----------|--------|\n| | | |" \
             > docs/decisions/README.md
         print_step "docs/decisions/README.md"
     fi
 
-    echo -e "\n${GREEN}${BOLD}✅ Proyecto configurado${NC}"
-    echo -e "   Recuerda editar CLAUDE.md con tu stack y convenciones"
-    echo -e "   Tus skills de frontend/backend van en .claude/skills/"
+    echo -e "\n${GREEN}${BOLD}✅ Project configured${NC}"
+    echo -e "   Remember to edit CLAUDE.md with your stack and conventions"
+    echo -e "   Your frontend/backend skills go in .claude/skills/"
 }
 
 # ─── Main ─────────────────────────────────────────────────
@@ -216,9 +216,9 @@ case "${1:-}" in
         install_global
         echo ""
         echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-        echo -e "${BOLD}  Siguiente paso:${NC}"
-        echo -e "  Navega a tu proyecto y corre:"
-        echo -e "  ${BLUE}cd /ruta/a/tu/proyecto && ${CMD_NAME} init${NC}"
+        echo -e "${BOLD}  Next step:${NC}"
+        echo -e "  Navigate to your project and run:"
+        echo -e "  ${BLUE}cd /path/to/your/project && ${CMD_NAME} init${NC}"
         echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
         ;;
 esac
