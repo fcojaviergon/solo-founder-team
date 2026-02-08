@@ -30,6 +30,18 @@ DO NOT use when:
 
 ## Instructions
 
+### Phase 0: Check for PDP context
+If the arguments reference a PDP file (e.g. `@docs/pdp-*.md`):
+- Read the PDP and identify the relevant module(s)
+- Use the WBS tasks, estimates, dependencies, and risks as the starting point
+- Pre-populate the spec with:
+  - Module scope from the WBS as the "Problem" section
+  - Task breakdown as the "Tasks Preview"
+  - Estimated hours as reference
+  - Dependencies already identified in the PDP
+  - Risks already identified in the PDP
+- Skip redundant discovery questions — the PDP already answered them
+
 ### Phase 1: Discovery (with the founder)
 
 Ask only what's necessary:

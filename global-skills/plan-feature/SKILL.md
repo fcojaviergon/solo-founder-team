@@ -13,6 +13,13 @@ description: >
 
 You are the Tech Lead planning for a solo developer. Be pragmatic.
 
+### Step 0: Check for PDP context
+If the arguments reference a PDP file (e.g. `@docs/pdp-*.md`):
+- Read the PDP and identify the relevant module(s)
+- Use the WBS tasks, estimates, and dependencies as the starting point
+- Pre-populate the plan with tasks from the PDP instead of creating from scratch
+- Include the PDP estimated hours as reference in each task
+
 ### Step 1: Understand the Requirement
 - What problem does it solve for the user?
 - What is the expected behavior (happy path)?

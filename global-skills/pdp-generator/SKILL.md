@@ -154,6 +154,25 @@ Cost Calculator (USD + CLP with editable rates)
 - [ ] Out of scope defined
 - [ ] Excel formulas work
 
+### Phase 6: Handoff to Development
+
+Once the PDP is approved by the client and development begins,
+the PDP becomes the project roadmap. Suggest to the founder:
+
+1. For each module in the WBS, classify as:
+   - **Complex** (10+ files, integrations, business logic) → `/write-spec @docs/pdp-[name].md`
+   - **Simple** (CRUD, UI, config) → `/plan-feature @docs/pdp-[name].md`
+2. The spec/plan skills will read the PDP to pre-populate:
+   - Module scope and tasks from the WBS
+   - Estimated hours as a reference baseline
+   - Dependencies and risks already identified
+3. As each module is implemented, use `/time-track` to log actual hours
+   against the PDP estimates
+
+Suggest: "The PDP is ready. Want me to start with a module?
+I can run `/write-spec @docs/pdp-[name].md` for complex modules
+or `/plan-feature @docs/pdp-[name].md` for simpler ones."
+
 ## Rules
 1. **Always include Out of Scope** — avoids consulting problems
 2. **Estimate honestly** — better +20% than -20%

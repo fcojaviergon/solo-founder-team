@@ -112,9 +112,13 @@ flowchart TB
         E --> H["docs/\nplans, decisions, retros"]
     end
 
-    subgraph WORKFLOW["Development Workflow"]
+    subgraph QUOTE["Quotation Phase"]
+        PDP["/pdp-generator\ngenerates WBS with\nmodules + estimates"]
+    end
+
+    subgraph WORKFLOW["Development Workflow (per module)"]
         direction TB
-        W1["/write-spec"] -->|"complex\nfeatures\nonly"| W2
+        W1["/write-spec"] -->|"complex modules\n10+ files"| W2
         W2["/plan-feature"] --> W3["/implement"]
         W3 --> W4["/test-verify"]
         W4 --> W5["/review-code"]
@@ -132,25 +136,27 @@ flowchart TB
         AG2["security-reviewer\nvulnerability scan"]
     end
 
-    subgraph BUSINESS["Business Tools"]
+    subgraph TRACKING["Tracking & Improvement"]
         direction TB
-        BZ1["/pdp-generator\nquote projects"] --> BZ2["/time-track\nlog actual hours"]
-        BZ2 --> BZ3["/sprint-retro\ndetect deviations"]
-        BZ3 -->|"update\nestimates"| BZ1
+        BZ2["/time-track\nlog actual hours"] --> BZ3["/sprint-retro\ndetect deviations"]
+        BZ3 -->|"update\nestimates"| PDP
     end
 
     INSTALL --> PROJECT
-    PROJECT --> WORKFLOW
+    PROJECT --> QUOTE
+    PDP -->|"simple modules"| W2
+    PDP -->|"complex modules"| W1
     WORKFLOW -.->|"triggered\nautomatically"| HOOKS
     WORKFLOW -.->|"spawned by\nskills"| AGENTS
-    W6 -->|"after shipping"| BUSINESS
+    W6 -->|"after shipping"| BZ2
 
     style INSTALL fill:#1a1a2e,stroke:#4a9eff,color:#fff
     style PROJECT fill:#1a1a2e,stroke:#4a9eff,color:#fff
+    style QUOTE fill:#1b2d1b,stroke:#7bed9f,color:#fff
     style WORKFLOW fill:#0d2137,stroke:#00d4aa,color:#fff
     style HOOKS fill:#2d1b36,stroke:#ff6b9d,color:#fff
     style AGENTS fill:#2d1b36,stroke:#ff6b9d,color:#fff
-    style BUSINESS fill:#1b2d1b,stroke:#7bed9f,color:#fff
+    style TRACKING fill:#1b2d1b,stroke:#7bed9f,color:#fff
 ```
 
 ### How Claude Code uses the kit
@@ -161,6 +167,17 @@ flowchart TB
 4. **Hooks run automatically** — Biome formats on every edit, file protection blocks dangerous writes
 5. **Agents run in isolation** — QA and security review don't pollute your main conversation context
 6. **Project context** comes from `CLAUDE.md` (your conventions) + `.claude/skills/` (custom skills)
+
+### PDP-driven development
+
+When you start from a quotation, the PDP becomes the roadmap:
+
+1. `/pdp-generator` analyzes requirements and creates a WBS with modules and estimated hours
+2. For each module in the PDP:
+   - **Complex** (10+ files, integrations) → `/write-spec @docs/pdp-project.md` → then `/plan-feature`
+   - **Simple** (CRUD, UI) → `/plan-feature @docs/pdp-project.md` directly
+3. `/time-track` logs actual hours per module to compare against PDP estimates
+4. `/sprint-retro` detects deviations and feeds back into future PDPs
 
 ## Daily Usage
 
