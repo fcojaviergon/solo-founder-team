@@ -16,7 +16,8 @@
 
 set -e
 
-VERSION="1.0.0"
+VERSION="1.1.0"
+VERSION_FILE="$HOME/.claude/.solo-founder-version"
 
 BLUE='\033[0;34m'
 GREEN='\033[0;32m'
@@ -56,6 +57,25 @@ print_error() {
 
 print_version() {
     echo "solo-founder-team v${VERSION}"
+    if [ -f "$VERSION_FILE" ]; then
+        local installed
+        installed=$(cat "$VERSION_FILE")
+        echo "installed:          v${installed}"
+    else
+        echo "installed:          (not installed)"
+    fi
+}
+
+get_installed_version() {
+    if [ -f "$VERSION_FILE" ]; then
+        cat "$VERSION_FILE"
+    else
+        echo ""
+    fi
+}
+
+save_version() {
+    echo "$VERSION" > "$VERSION_FILE"
 }
 
 print_usage() {
@@ -64,12 +84,15 @@ print_usage() {
     echo "Commands:"
     echo "  (default)    Install global skills, agents, and hooks to ~/.claude/"
     echo "  init         Configure current project (CLAUDE.md, settings, docs/)"
+    echo "  update       Update to the latest version (re-installs global components)"
     echo "  --help       Show this help"
-    echo "  --version    Show version number"
+    echo "  --version    Show version number and installed version"
     echo ""
     echo "Examples:"
-    echo "  ${CMD_NAME}          # Install global toolkit"
-    echo "  ${CMD_NAME} init     # Setup current project"
+    echo "  ${CMD_NAME}            # Install global toolkit"
+    echo "  ${CMD_NAME} init       # Setup current project"
+    echo "  ${CMD_NAME} update     # Update to latest version"
+    echo "  ${CMD_NAME} --version  # Check versions"
     echo ""
 }
 
@@ -139,7 +162,10 @@ install_global() {
     cp "$KIT_DIR/config/global-settings.json" "$HOME/.claude/settings.json"
     print_step "Global settings with hooks installed"
 
-    echo -e "\n${GREEN}${BOLD}✅ Global installation complete${NC}"
+    # Save installed version
+    save_version
+
+    echo -e "\n${GREEN}${BOLD}✅ Global installation complete (v${VERSION})${NC}"
     echo -e "   Skills: ${#skills[@]} SDLC + ${#biz_skills[@]} Business = $((${#skills[@]} + ${#biz_skills[@]})) total"
     echo -e "   Agents: 2"
     echo -e "   Hooks: 5 (PreToolUse + PostToolUse + Stop×2 + Notification)"
@@ -203,6 +229,23 @@ case "${1:-}" in
         ;;
     --global)
         install_global
+        ;;
+    update)
+        INSTALLED=$(get_installed_version)
+        if [ -z "$INSTALLED" ]; then
+            echo -e "${YELLOW}  No previous installation found. Running fresh install...${NC}"
+        elif [ "$INSTALLED" = "$VERSION" ]; then
+            echo -e "${GREEN}  Already up to date (v${VERSION})${NC}"
+            echo -e "  Re-installing to ensure all files are current..."
+        else
+            echo -e "${BLUE}  Updating: v${INSTALLED} → v${VERSION}${NC}"
+        fi
+        echo ""
+        install_global
+        if [ -n "$INSTALLED" ] && [ "$INSTALLED" != "$VERSION" ]; then
+            echo ""
+            echo -e "${GREEN}${BOLD}  🎉 Updated from v${INSTALLED} to v${VERSION}${NC}"
+        fi
         ;;
     --help|-h)
         print_usage

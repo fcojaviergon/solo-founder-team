@@ -61,6 +61,18 @@ cd /path/to/your/project
 curl -fsSL https://raw.githubusercontent.com/fcojaviergon/solo-founder-team/main/remote-install.sh | bash -s -- init
 ```
 
+### Updating
+
+```bash
+# Check your installed version:
+npx github:fcojaviergon/solo-founder-team --version
+
+# Update to the latest version:
+npx github:fcojaviergon/solo-founder-team update
+```
+
+The update command re-installs all global skills, agents, and hooks while showing you the version change (e.g. `v1.0.0 → v1.1.0`). Project files (`CLAUDE.md`, `.claude/settings.json`) are NOT overwritten during update.
+
 ### Option C: Git clone (for development/customization)
 
 ```bash
@@ -217,6 +229,8 @@ When you start from a quotation, the PDP becomes the roadmap:
 | Log hours | `/time-track 3h on auth module` |
 | Check hours progress | `/time-track how much have we spent?` |
 | Document | `/write-docs [what to document]` |
+| Update kit | `npx github:fcojaviergon/solo-founder-team update` |
+| Check version | `npx github:fcojaviergon/solo-founder-team --version` |
 
 ## Architecture
 
