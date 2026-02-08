@@ -59,7 +59,6 @@ print_version() {
 }
 
 print_usage() {
-    print_header
     echo "Usage: solo-founder-team [command]"
     echo ""
     echo "Commands:"
