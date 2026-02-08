@@ -16,7 +16,7 @@
 
 set -e
 
-VERSION="1.1.0"
+VERSION="1.1.1"
 VERSION_FILE="$HOME/.claude/.solo-founder-version"
 
 BLUE='\033[0;34m'
@@ -26,7 +26,15 @@ RED='\033[0;31m'
 NC='\033[0m'
 BOLD='\033[1m'
 
-KIT_DIR="$(cd "$(dirname "$0")" && pwd)"
+# Resolve symlinks (npx creates a symlink in node_modules/.bin/)
+SCRIPT_PATH="$0"
+while [ -L "$SCRIPT_PATH" ]; do
+    SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd)"
+    SCRIPT_PATH="$(readlink "$SCRIPT_PATH")"
+    # Handle relative symlinks
+    [[ "$SCRIPT_PATH" != /* ]] && SCRIPT_PATH="$SCRIPT_DIR/$SCRIPT_PATH"
+done
+KIT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd)"
 
 # Detect execution context for user-facing messages
 if [[ "$0" == *"node_modules"* ]] || [[ "$0" == *"_npx"* ]]; then

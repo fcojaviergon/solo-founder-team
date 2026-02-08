@@ -1,6 +1,6 @@
 {
 	"name": "solo-founder-team",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "SDLC Kit for Claude Code — Skills, Agents, Hooks for solo founders",
 	"bin": {
 		"solo-founder-team": "./install.sh"
