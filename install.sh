@@ -222,6 +222,16 @@ install_project() {
             > docs/decisions/README.md
         print_step "docs/decisions/README.md"
     fi
+    if [ ! -f "docs/bugs-found.md" ]; then
+        echo "# Bugs Found\n\nLog maintained by /triage-bug skill.\n" \
+            > docs/bugs-found.md
+        print_step "docs/bugs-found.md"
+    fi
+    if [ ! -f "docs/timesheet.csv" ]; then
+        echo "date,project,module,task,actual_mh,estimated_mh,notes" \
+            > docs/timesheet.csv
+        print_step "docs/timesheet.csv"
+    fi
 
     echo -e "\n${GREEN}${BOLD}✅ Project configured${NC}"
     echo -e "   Remember to edit CLAUDE.md with your stack and conventions"
