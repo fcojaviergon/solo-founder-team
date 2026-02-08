@@ -96,6 +96,72 @@ mkdir -p .claude/skills/my-backend
 # Copy your SKILL.md there
 ```
 
+## How It Works
+
+```mermaid
+flowchart TB
+    subgraph INSTALL["Installation (one-time)"]
+        A["npx github:fcojaviergon/solo-founder-team"] --> B["~/.claude/skills/\n13 global skills"]
+        A --> C["~/.claude/agents/\n2 agents"]
+        A --> D["~/.claude/settings.json\nhooks"]
+    end
+
+    subgraph PROJECT["Project Setup (per repo)"]
+        E["npx ... init"] --> F["CLAUDE.md\nproject constitution"]
+        E --> G[".claude/settings.json\npermissions"]
+        E --> H["docs/\nplans, decisions, retros"]
+    end
+
+    subgraph WORKFLOW["Development Workflow"]
+        direction TB
+        W1["/write-spec"] -->|"complex\nfeatures\nonly"| W2
+        W2["/plan-feature"] --> W3["/implement"]
+        W3 --> W4["/test-verify"]
+        W4 --> W5["/review-code"]
+        W5 --> W6["/commit-ship"]
+    end
+
+    subgraph HOOKS["Automatic Hooks (run in background)"]
+        H1["PreToolUse\nblock writes to\n.env .git/ node_modules/"]
+        H2["PostToolUse\nauto-format with\nBiome per file"]
+        H3["Stop\nbuild + lint check\n+ macOS notification"]
+    end
+
+    subgraph AGENTS["Subagents (isolated context)"]
+        AG1["qa-tester\ntests + build + lint"]
+        AG2["security-reviewer\nvulnerability scan"]
+    end
+
+    subgraph BUSINESS["Business Tools"]
+        direction TB
+        BZ1["/pdp-generator\nquote projects"] --> BZ2["/time-track\nlog actual hours"]
+        BZ2 --> BZ3["/sprint-retro\ndetect deviations"]
+        BZ3 -->|"update\nestimates"| BZ1
+    end
+
+    INSTALL --> PROJECT
+    PROJECT --> WORKFLOW
+    WORKFLOW -.->|"triggered\nautomatically"| HOOKS
+    WORKFLOW -.->|"spawned by\nskills"| AGENTS
+    W6 -->|"after shipping"| BUSINESS
+
+    style INSTALL fill:#1a1a2e,stroke:#4a9eff,color:#fff
+    style PROJECT fill:#1a1a2e,stroke:#4a9eff,color:#fff
+    style WORKFLOW fill:#0d2137,stroke:#00d4aa,color:#fff
+    style HOOKS fill:#2d1b36,stroke:#ff6b9d,color:#fff
+    style AGENTS fill:#2d1b36,stroke:#ff6b9d,color:#fff
+    style BUSINESS fill:#1b2d1b,stroke:#7bed9f,color:#fff
+```
+
+### How Claude Code uses the kit
+
+1. **You type a slash command** (e.g. `/plan-feature add search filter`)
+2. **Claude Code loads the skill** from `~/.claude/skills/plan-feature/SKILL.md`
+3. **The skill instructs Claude** with specific steps, templates, and rules
+4. **Hooks run automatically** — Biome formats on every edit, file protection blocks dangerous writes
+5. **Agents run in isolation** — QA and security review don't pollute your main conversation context
+6. **Project context** comes from `CLAUDE.md` (your conventions) + `.claude/skills/` (custom skills)
+
 ## Daily Usage
 
 ### Typical workflow
@@ -181,16 +247,12 @@ my-project/                       <- PER PROJECT
 
 ## The Feedback Loop
 
-```
-/pdp-generator -> estimates MH
-        |
-/time-track -> records actual MH
-        |
-/sprint-retro -> detects deviations
-        |
-Updates estimation-reference.md
-        |
-Next /pdp-generator -> more accurate
+```mermaid
+flowchart LR
+    A["/pdp-generator\nestimates MH"] --> B["/time-track\nrecords actual MH"]
+    B --> C["/sprint-retro\ndetects deviations"]
+    C --> D["Updates\nestimation-reference.md"]
+    D --> A
 ```
 
 ## Prerequisites
