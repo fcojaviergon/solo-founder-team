@@ -1,0 +1,23 @@
+{
+  "name": "session-end-verification",
+  "version": "1.1.1",
+  "description": "Run lint check and build verification in the background when a Claude Code session ends. Part of the Solo Founder SDLC Kit.",
+  "author": "fcojaviergon",
+  "license": "MIT",
+  "tags": ["sdlc", "verification", "hooks", "solo-founder", "build"],
+  "hook_type": "Stop",
+  "config": {
+    "hooks": {
+      "Stop": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash -c '( npx @biomejs/biome check ./src --no-errors-on-unmatched > /tmp/biome-report.txt 2>&1; npm run build --if-present > /tmp/build-report.txt 2>&1 || true; echo \"$(date +%Y-%m-%dT%H:%M:%S) STOP\" >> ~/.claude/session-log.txt ) &'"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
