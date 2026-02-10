@@ -114,7 +114,7 @@ mkdir -p .claude/skills/my-backend
 ```mermaid
 flowchart TB
     subgraph INSTALL["Installation (one-time)"]
-        A["npx github:fcojaviergon/solo-founder-team"] --> B["~/.claude/skills/\n13 global skills"]
+        A["npx github:fcojaviergon/solo-founder-team"] --> B["~/.claude/skills/\n14 global skills"]
         A --> C["~/.claude/agents/\n2 agents"]
         A --> D["~/.claude/settings.json\nhooks"]
     end
@@ -138,6 +138,15 @@ flowchart TB
         W5 --> W6["/commit-ship"]
     end
 
+    subgraph GITHUB["GitHub Issues (optional, opt-in)"]
+        direction TB
+        GH1["Parent issue\n[Feature] name"]
+        GH2["Task issues\n#101, #102, #103..."]
+        GH3["PR closes issues\nautomatically"]
+        GH1 --> GH2
+        GH2 --> GH3
+    end
+
     subgraph HOOKS["Automatic Hooks (run in background)"]
         H1["PreToolUse\nblock writes to\n.env .git/ node_modules/"]
         H2["PostToolUse\nauto-format with\nBiome per file"]
@@ -159,6 +168,9 @@ flowchart TB
     PROJECT --> QUOTE
     PDP -->|"simple modules"| W2
     PDP -->|"complex modules"| W1
+    W2 -.->|"creates\nissues"| GH1
+    W3 -.->|"comments\nprogress"| GH2
+    W6 -.->|"PR closes\nissues"| GH3
     WORKFLOW -.->|"triggered\nautomatically"| HOOKS
     WORKFLOW -.->|"spawned by\nskills"| AGENTS
     W6 -->|"after shipping"| BZ2
@@ -167,6 +179,7 @@ flowchart TB
     style PROJECT fill:#1a1a2e,stroke:#4a9eff,color:#fff
     style QUOTE fill:#1b2d1b,stroke:#7bed9f,color:#fff
     style WORKFLOW fill:#0d2137,stroke:#00d4aa,color:#fff
+    style GITHUB fill:#1c1c1c,stroke:#f0883e,color:#fff
     style HOOKS fill:#2d1b36,stroke:#ff6b9d,color:#fff
     style AGENTS fill:#2d1b36,stroke:#ff6b9d,color:#fff
     style TRACKING fill:#1b2d1b,stroke:#7bed9f,color:#fff
