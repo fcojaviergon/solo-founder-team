@@ -35,7 +35,14 @@ If either fails, fix first. DO NOT ship broken code.
    - Title = commit message
    - Body = summary of changes + link to plan if exists
    - Appropriate labels if the repo uses them
-6. Report: PR URL and recommended next step
+6. **GitHub Issues Linking (Optional)**: If `.github-issues` contains `enabled`:
+   - Read docs/active-plan.md
+   - Extract all issue numbers from completed tasks: lines with `[x]` and `<!-- gh:#NNN -->`
+   - Append `Closes #101, closes #102, ...` to the PR body
+     (GitHub auto-closes these issues when the PR is merged)
+   - If there's a parent feature issue (look for `<!-- gh-parent:#NNN -->` in active-plan.md header):
+     - `gh issue comment NNN --body "Shipped in PR #<pr-number>"`
+7. Report: PR URL, linked issues, and recommended next step
 
 ## Rules
 - If the diff is > 500 lines, STOP and ask if we should

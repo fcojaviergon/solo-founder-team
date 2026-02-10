@@ -20,22 +20,23 @@ professional development workflow as a solo founder using Claude Code.
 | 9 | /write-docs | Skill | Documentation |
 | 10 | /triage-bug | Skill | Bug diagnosis and classification |
 | 11 | /write-spec | Skill | Formal spec for complex features (selective SDD) |
+| 12 | /github-sync | Skill | Sync tasks/bugs with GitHub Issues |
 | | **BUSINESS SKILLS** | | |
-| 12 | /pdp-generator | Skill | Quotation: WBS + MH estimation + Excel |
-| 13 | /bootstrap-repo | Skill+fork | Quick repo onboarding |
-| 14 | /log-decision | Skill | Automatic ADRs |
-| 15 | /sprint-retro | Skill+fork | Retrospective + continuous improvement |
-| 16 | /time-track | Skill | Actual vs. estimated hours |
+| 13 | /pdp-generator | Skill | Quotation: WBS + MH estimation + Excel |
+| 14 | /bootstrap-repo | Skill+fork | Quick repo onboarding |
+| 15 | /log-decision | Skill | Automatic ADRs |
+| 16 | /sprint-retro | Skill+fork | Retrospective + continuous improvement |
+| 17 | /time-track | Skill | Actual vs. estimated hours |
 | | **AGENTS** | | |
-| 17 | qa-tester | Agent | Isolated QA (tests + build + lint) |
-| 18 | security-reviewer | Agent | Security audit (read-only) |
+| 18 | qa-tester | Agent | Isolated QA (tests + build + lint) |
+| 19 | security-reviewer | Agent | Security audit (read-only) |
 | | **HOOKS** | | |
-| 19 | File protection | PreToolUse | Blocks .env, .git, node_modules |
-| 20 | Per-file Biome | PostToolUse | Auto-fix lint+format per file |
-| 21 | Global Build + Biome | Stop | Full verification on finish |
-| 22 | Stop notification | Stop | macOS alert on finish |
-| 23 | Input notification | Notification | Alert when waiting for input |
-| 24 | Session logging | Stop | Log for time tracking |
+| 20 | File protection | PreToolUse | Blocks .env, .git, node_modules |
+| 21 | Per-file Biome | PostToolUse | Auto-fix lint+format per file |
+| 22 | Global Build + Biome | Stop | Full verification on finish |
+| 23 | Stop notification | Stop | macOS alert on finish |
+| 24 | Input notification | Notification | Alert when waiting for input |
+| 25 | Session logging | Stop | Log for time tracking |
 
 ## Installation
 
@@ -191,6 +192,36 @@ When you start from a quotation, the PDP becomes the roadmap:
 3. `/time-track` logs actual hours per module to compare against PDP estimates
 4. `/sprint-retro` detects deviations and feeds back into future PDPs
 
+### GitHub Issues Integration (Optional)
+
+The kit can optionally sync tasks and bugs with GitHub Issues. This is **opt-in per project**.
+
+**How to enable:**
+1. When you run `/plan-feature` or `/triage-bug`, Claude will ask: "Sync to GitHub Issues?"
+2. If you accept, a `.github-issues` file is created in your project root
+3. From then on, all skills automatically create/update/close GitHub issues
+
+**What happens when enabled:**
+
+| Skill | GitHub action |
+|-------|---------------|
+| `/plan-feature` | Creates parent issue + one issue per task |
+| `/write-spec` | Creates epic issue for the spec |
+| `/implement` | Comments progress on task issues |
+| `/commit-ship` | Links PR with `Closes #NNN` to auto-close |
+| `/triage-bug` | Creates bug issues (auto for CRITICAL) |
+| `/github-sync` | Manual sync, status check, bulk close |
+
+**Tracking format** — issue numbers are stored as HTML comments in your markdown files:
+```markdown
+1. [ ] Add search UI — src/components/ <!-- gh:#101 -->
+2. [x] Create API endpoint — src/api/ <!-- gh:#102 -->
+```
+
+**To disable:** set `.github-issues` content to `disabled`.
+
+**Requirements:** [GitHub CLI](https://cli.github.com/) (`gh`) authenticated.
+
 ## Daily Usage
 
 ### Typical workflow
@@ -229,6 +260,9 @@ When you start from a quotation, the PDP becomes the roadmap:
 | Log hours | `/time-track 3h on auth module` |
 | Check hours progress | `/time-track how much have we spent?` |
 | Document | `/write-docs [what to document]` |
+| Sync issues to GitHub | `/github-sync push` |
+| Check issue sync status | `/github-sync status` |
+| Close completed issues | `/github-sync close-done` |
 | Update kit | `npx github:fcojaviergon/solo-founder-team update` |
 | Check version | `npx github:fcojaviergon/solo-founder-team --version` |
 

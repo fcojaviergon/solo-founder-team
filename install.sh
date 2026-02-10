@@ -16,7 +16,7 @@
 
 set -e
 
-VERSION="1.1.1"
+VERSION="1.2.0"
 VERSION_FILE="$HOME/.claude/.solo-founder-version"
 
 BLUE='\033[0;34m'
@@ -121,6 +121,7 @@ install_global() {
         "write-docs"
         "triage-bug"
         "write-spec"
+        "github-sync"
     )
 
     for skill in "${skills[@]}"; do

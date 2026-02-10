@@ -123,9 +123,14 @@ Present to the founder and ask:
 
 Once approved:
 1. Mark status as "Approved"
-2. Suggest: "Should I run /plan-feature @specs/[name].md to generate the plan?"
-3. /plan-feature reads the spec and generates the detailed plan in active-plan.md
-4. If the feature is large, suggest subagent pattern:
+2. **GitHub Issue (Optional)**: If `.github-issues` contains `enabled`:
+   - Ensure labels exist: `gh label create user-story --color 0075ca --force` and `gh label create from-spec --color d4c5f9 --force`
+   - Ask: "Create a GitHub issue for this spec?"
+   - If yes: create epic issue with `gh issue create --title "[Spec] <name>" --body "..." --label user-story --label from-spec`
+   - Append to the spec file: `<!-- gh:#NNN -->`
+3. Suggest: "Should I run /plan-feature @specs/[name].md to generate the plan?"
+4. /plan-feature reads the spec and generates the detailed plan in active-plan.md
+5. If the feature is large, suggest subagent pattern:
    "Each task in the plan can be executed by an isolated subagent
    with an atomic commit after each one."
 

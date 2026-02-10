@@ -20,13 +20,19 @@ description: >
 
 1. Read docs/active-plan.md to understand the full context
 2. Identify the next pending task ([ ])
-3. Create branch if it doesn't exist: `git checkout -b feat/[name]`
-4. Implement following the project conventions
-5. After each modified file, verify it compiles:
+3. **GitHub Issue (Optional)**: If `.github-issues` contains `enabled`:
+   - Extract issue number from the task line: look for `<!-- gh:#NNN -->`
+   - If found: `gh issue comment NNN --body "Starting implementation"`
+4. Create branch if it doesn't exist: `git checkout -b feat/[name]`
+5. Implement following the project conventions
+6. After each modified file, verify it compiles:
    - `npx @biomejs/biome check --write [file]`
    - `npx tsc --noEmit` (if applicable)
-6. Mark the task as completed [x] in active-plan.md
-7. Report: what you did, what files you touched, what's next
+7. Mark the task as completed [x] in active-plan.md
+8. **GitHub Issue (Optional)**: If issue was linked in step 3:
+   - `gh issue comment NNN --body "Completed: [brief summary of what was done]"`
+   - Do NOT close the issue — that happens when the PR is created via /commit-ship
+9. Report: what you did, what files you touched, what's next
 
 ## Rules
 - Incremental changes. One commit per task.
