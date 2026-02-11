@@ -1,5 +1,9 @@
 # Solo Founder SDLC Kit for Claude Code
 
+<p align="center">
+  <img src="banner.png" alt="Solo Founder Team — Multi-Agent Workflow for Solo Builders" width="600">
+</p>
+
 Complete kit of Skills, Agents, Hooks, and configuration for a
 professional development workflow as a solo founder using Claude Code.
 
