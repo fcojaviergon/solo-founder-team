@@ -43,35 +43,59 @@ Ask:
 4. "Client profile? (startup, enterprise, government)"
 5. "Deadline or budget constraint?"
 
-### Phase 2: Module Decomposition
+### Phase 2: Epic & Module Decomposition
+
+Decompose the project into **Epics** (= functional modules).
+Each epic contains **User Stories** that describe what the user can do.
 
 ```
 Project
-├── M1: Setup & Infrastructure
-├── M2: Authentication & Users
-├── M3-MN: [Core Business Modules]
-├── MN+1: Integrations
-├── MN+2: Admin Panel
-└── MN+3: QA & Go-Live
+├── Epic 1: Setup & Infrastructure
+├── Epic 2: Authentication & Users
+├── Epic 3-N: [Core Business Epics]
+├── Epic N+1: Integrations
+├── Epic N+2: Admin Panel
+└── Epic N+3: QA & Go-Live
 ```
 
-### Phase 3: Per-Task Estimation
+### Phase 3: User Story Estimation
 
-For EACH feature:
+For each epic, identify user stories and estimate them.
+A user story = one thing a user can do end-to-end.
+
+**Story format in the WBS:**
 
 | Field | Description |
 |-------|-------------|
-| ID | M1-T01, M2-T01, etc. |
-| Module | Parent module name |
-| Task | Clear description |
+| ID | E1-US01, E2-US01, etc. (Epic-UserStory) |
+| Epic | Parent epic name |
+| User Story | **As a** [role], **I want** [action], **so that** [benefit] |
 | Type | Frontend / Backend / Fullstack / Infra / QA / Design |
 | Complexity | Low / Medium / High / Very High |
-| Estimated MH | Man-hours |
+| Estimated MH | Man-hours (total for the story) |
 | Profile | Junior / Semi-Senior / Senior / Tech Lead / Architect |
 | Dependencies | Prerequisite IDs |
 | Risk | Low / Medium / High |
 | Phase | MVP / Phase 2 |
+| Key Criteria | 2-3 main acceptance criteria (brief, expanded later by /plan-feature) |
 | Notes | Assumptions, exclusions |
+
+**Example:**
+
+| Field | Value |
+|-------|-------|
+| ID | E3-US01 |
+| Epic | Product Catalog |
+| User Story | **As a** store admin, **I want** to manage products (CRUD), **so that** I can keep my catalog updated |
+| Type | Fullstack |
+| Complexity | Medium |
+| Estimated MH | 16 |
+| Profile | Semi-Senior |
+| Dependencies | E2-US01 (auth) |
+| Risk | Low |
+| Phase | MVP |
+| Key Criteria | Create with validation, edit inline, delete only if no orders |
+| Notes | Max 10 images per product |
 
 #### Estimation Reference (MH)
 
@@ -134,8 +158,8 @@ For EACH feature:
 1. Executive Summary
 2. Scope (In/Out scope + Assumptions)
 3. Proposed Architecture (Mermaid diagram)
-4. Complete WBS
-5. Estimation summary (by module + by profile + totals)
+4. Epic breakdown with user stories (the WBS)
+5. Estimation summary (by epic + by profile + totals)
 6. Timeline (weeks)
 7. Suggested team
 8. Risks
@@ -147,7 +171,9 @@ Sheets: Detailed WBS, Summary by Module, Summary by Profile,
 Cost Calculator (USD + CLP with editable rates)
 
 ### Phase 5: Validation
-- [ ] All tasks have unique ID
+- [ ] All stories have unique ID (E1-US01 format)
+- [ ] Each story has the "As a / I want / So that" format
+- [ ] Each story has 2-3 key acceptance criteria
 - [ ] Dependencies are coherent
 - [ ] Totals add up
 - [ ] Buffer applied
@@ -192,18 +218,19 @@ When approved, mark the PDP as **Final** and proceed to Phase 6.
 Once the PDP is approved by the client and development begins,
 the PDP becomes the project roadmap. Suggest to the founder:
 
-1. For each module in the WBS, classify as:
+1. For each epic in the PDP, classify as:
    - **Complex** (10+ files, integrations, business logic) → `/write-spec @docs/pdp-[name].md`
    - **Simple** (CRUD, UI, config) → `/plan-feature @docs/pdp-[name].md`
-2. The spec/plan skills will read the PDP to pre-populate:
-   - Module scope and tasks from the WBS
-   - Estimated hours as a reference baseline
-   - Dependencies and risks already identified
-3. As each module is implemented, use `/time-track` to log actual hours
+2. `/plan-feature` will read the PDP and:
+   - Map each PDP epic → plan epic (same structure)
+   - Expand each PDP user story → full story with detailed GIVEN/WHEN/THEN criteria
+   - The PDP's "Key Criteria" become the starting point, not the final version
+   - Add edge cases and technical details the PDP intentionally left out
+3. As each story is implemented, use `/time-track` to log actual hours
    against the PDP estimates
 
-Suggest: "The PDP is ready. Want me to start with a module?
-I can run `/write-spec @docs/pdp-[name].md` for complex modules
+Suggest: "The PDP is ready. Want me to start with an epic?
+I can run `/write-spec @docs/pdp-[name].md` for complex epics
 or `/plan-feature @docs/pdp-[name].md` for simpler ones."
 
 ## Rules

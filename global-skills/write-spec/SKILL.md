@@ -32,11 +32,11 @@ DO NOT use when:
 
 ### Phase 0: Check for PDP context
 If the arguments reference a PDP file (e.g. `@docs/pdp-*.md`):
-- Read the PDP and identify the relevant module(s)
-- Use the WBS tasks, estimates, dependencies, and risks as the starting point
+- Read the PDP and identify the relevant epic(s)
+- Use the epic's user stories, estimates, dependencies, and risks as the starting point
 - Pre-populate the spec with:
-  - Module scope from the WBS as the "Problem" section
-  - Task breakdown as the "Tasks Preview"
+  - Epic scope and user stories as the "Problem" section
+  - Story key criteria as the foundation for "Acceptance Criteria"
   - Estimated hours as reference
   - Dependencies already identified in the PDP
   - Risks already identified in the PDP
