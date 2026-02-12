@@ -154,6 +154,39 @@ Cost Calculator (USD + CLP with editable rates)
 - [ ] Out of scope defined
 - [ ] Excel formulas work
 
+### Phase 5.5: Review & Refinement
+
+Present the PDP to the founder and ask:
+"Review the PDP. What would you like to adjust?"
+
+**Common refinement requests and how to handle them:**
+
+| Founder says | Action |
+|-------------|--------|
+| "Module X is too expensive" | Break down tasks, reduce scope, or move items to Phase 2 |
+| "This is missing feature Y" | Add module/tasks, re-estimate, update totals |
+| "Move X to Phase 2" | Change phase field, recalculate MVP totals |
+| "Estimates are too high/low" | Review against estimation reference, adjust with justification |
+| "Merge these modules" | Consolidate, reassign IDs, update dependencies |
+| "Split this module" | Create sub-modules, redistribute tasks, update IDs |
+| "Add/remove a risk" | Update risks section and adjust buffer if needed |
+| "Change the team" | Update suggested team and re-estimate affected profiles |
+
+**Refinement rules:**
+1. After each change, re-run Phase 5 validation (totals, IDs, dependencies)
+2. Regenerate the Excel if data changed
+3. Keep a changelog at the bottom of the PDP:
+   ```
+   ## Changelog
+   - v1.0 — Initial PDP
+   - v1.1 — Moved payments to Phase 2, reduced MVP by 40 MH
+   - v1.2 — Added SSO module per client request
+   ```
+4. Iterate until the founder says "approved" or "ready"
+5. Never push back on changes — adjust and show the impact honestly
+
+When approved, mark the PDP as **Final** and proceed to Phase 6.
+
 ### Phase 6: Handoff to Development
 
 Once the PDP is approved by the client and development begins,
