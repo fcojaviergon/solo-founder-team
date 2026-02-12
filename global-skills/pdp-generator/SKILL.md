@@ -97,55 +97,77 @@ A user story = one thing a user can do end-to-end.
 | Key Criteria | Create with validation, edit inline, delete only if no orders |
 | Notes | Max 10 images per product |
 
-#### Estimation Reference (MH)
+#### Estimation Reference (MH) — AI-Assisted Development
+
+These estimates assume a developer working with AI coding tools
+(Claude Code, Copilot, etc.). Code generation is fast — the time
+is in design, review, testing, and integration.
 
 **Frontend:**
-- Simple UI component: 2-4
-- Standard form (3-5 fields): 4-8
-- Complex form (10+ fields): 8-16
-- List view + filters: 8-16
-- Dashboard with charts: 16-32
-- Multi-step wizard: 16-24
-- Responsive adaptation: +30% on base
+- Simple UI component: 1-2
+- Standard form (3-5 fields): 2-4
+- Complex form (10+ fields): 4-8
+- List view + filters: 3-6
+- Dashboard with charts: 6-12
+- Multi-step wizard: 6-10
+- Responsive adaptation: +20% on base
 
 **Backend:**
-- Simple CRUD: 4-8
-- CRUD with validations: 8-16
-- API with complex logic: 16-32
-- External REST integration: 8-24
-- SOAP/legacy integration: 16-40
-- Notifications (email/push): 16-24
-- Roles and permissions: 16-32
-- Background jobs: 12-24
-- File upload + processing: 8-16
+- Simple CRUD: 1-3
+- CRUD with validations: 3-6
+- API with complex logic: 8-16
+- External REST integration: 4-12
+- SOAP/legacy integration: 12-24
+- Notifications (email/push): 4-8
+- Roles and permissions: 6-12
+- Background jobs: 4-10
+- File upload + processing: 3-8
 
 **Infrastructure:**
-- Dev setup (Docker): 4-8
-- Basic CI/CD: 8-16
-- CI/CD staging + prod: 16-32
-- Basic IaC: 16-24
-- Monitoring: 8-16
+- Dev setup (Docker): 2-4
+- Basic CI/CD: 3-6
+- CI/CD staging + prod: 6-12
+- Basic IaC: 6-12
+- Monitoring: 4-8
 
 **QA:**
-- Unit tests per module: 8-16
-- Integration tests: 12-24
-- E2E tests: 16-32
-- Performance testing: 16-24
+- Unit tests per module: 2-6
+- Integration tests: 4-10
+- E2E tests: 8-16
+- Performance testing: 8-16
 
-**Management:**
-- Kickoff + planning: 8-16
-- Sprint planning (per sprint): 4-8
-- Code review (per sprint): 8-16
-- Technical documentation: 16-32
-- Go-live support: 8-16
+**Management & Review:**
+- Kickoff + planning: 4-8
+- Sprint planning (per sprint): 2-4
+- Code review + AI output validation (per sprint): 4-8
+- Technical documentation: 4-8
+- Go-live support: 4-8
+
+#### Where AI saves time vs. where it doesn't
+
+| Phase | AI Impact | Notes |
+|-------|-----------|-------|
+| Boilerplate / CRUD | ~70% faster | AI generates most of the code |
+| UI components | ~60% faster | Layouts, forms, lists are routine |
+| Business logic | ~40% faster | AI helps, but logic needs human validation |
+| External integrations | ~30% faster | APIs without docs still require manual work |
+| Architecture decisions | ~10% faster | Still requires human judgment |
+| Security / auth | ~20% faster | Must be carefully reviewed regardless |
+| Testing | ~50% faster | AI generates tests, but edge cases need thought |
+| Debugging | Varies | AI is great at finding bugs, less at subtle ones |
+| DevOps / Infra | ~30% faster | Config-heavy, less AI leverage |
+
+**Rule of thumb:** Estimate at ~40-60% of traditional manual hours for
+most tasks. Add buffer for complex integrations and security-sensitive areas.
 
 #### Context Multipliers
-- Legacy: x1.3-1.5
+- Legacy codebase: x1.3-1.5
 - Ambiguous requirements: x1.2-1.4
 - APIs without docs: x1.5
-- Compliance: x1.3
+- Compliance (HIPAA, SOC2, etc.): x1.3
 - Multi-language: x1.2
 - Multi-tenant: x1.3-1.5
+- No AI tooling (client restriction): x2.0
 
 #### Contingency Buffer
 - Well defined: +15%

@@ -1,47 +1,72 @@
-# Quick Estimation Reference Table
+# Quick Estimation Reference Table — AI-Assisted Development
+
+> These estimates assume a developer working with AI coding tools
+> (Claude Code, Copilot, etc.). Roughly 40-60% of traditional hours.
 
 ## Ranges by Type (MH): Min | Typical | Max
 
 ### Frontend
 | Task | Min | Typical | Max |
 |------|-----|---------|-----|
-| Simple UI component | 2 | 3 | 4 |
-| Standard form | 4 | 6 | 8 |
-| Complex form | 8 | 12 | 16 |
-| List view + filters | 8 | 12 | 16 |
-| Dashboard with charts | 16 | 24 | 32 |
-| Multi-step wizard | 16 | 20 | 24 |
-| Interactive map | 12 | 18 | 24 |
+| Simple UI component | 1 | 1.5 | 2 |
+| Standard form | 2 | 3 | 4 |
+| Complex form | 4 | 6 | 8 |
+| List view + filters | 3 | 4.5 | 6 |
+| Dashboard with charts | 6 | 9 | 12 |
+| Multi-step wizard | 6 | 8 | 10 |
+| Interactive map | 5 | 8 | 10 |
 
 ### Backend
 | Task | Min | Typical | Max |
 |------|-----|---------|-----|
-| Simple CRUD | 4 | 6 | 8 |
-| CRUD with validations | 8 | 12 | 16 |
-| Complex logic API | 16 | 24 | 32 |
-| REST integration | 8 | 16 | 24 |
-| SOAP integration | 16 | 28 | 40 |
-| Notifications | 16 | 20 | 24 |
-| Roles and permissions | 16 | 24 | 32 |
-| Background jobs | 12 | 18 | 24 |
-| File processing | 8 | 12 | 16 |
+| Simple CRUD | 1 | 2 | 3 |
+| CRUD with validations | 3 | 4.5 | 6 |
+| Complex logic API | 8 | 12 | 16 |
+| REST integration | 4 | 8 | 12 |
+| SOAP integration | 12 | 18 | 24 |
+| Notifications | 4 | 6 | 8 |
+| Roles and permissions | 6 | 9 | 12 |
+| Background jobs | 4 | 7 | 10 |
+| File processing | 3 | 5 | 8 |
 
 ### Infra
 | Task | Min | Typical | Max |
 |------|-----|---------|-----|
-| Docker setup | 4 | 6 | 8 |
-| Basic CI/CD | 8 | 12 | 16 |
-| Full CI/CD | 16 | 24 | 32 |
-| Basic IaC | 16 | 20 | 24 |
-| Monitoring | 8 | 12 | 16 |
+| Docker setup | 2 | 3 | 4 |
+| Basic CI/CD | 3 | 4.5 | 6 |
+| Full CI/CD | 6 | 9 | 12 |
+| Basic IaC | 6 | 9 | 12 |
+| Monitoring | 4 | 6 | 8 |
 
 ### QA
 | Task | Min | Typical | Max |
 |------|-----|---------|-----|
-| Unit tests/module | 8 | 12 | 16 |
-| Integration tests | 12 | 18 | 24 |
-| E2E tests | 16 | 24 | 32 |
-| Perf testing | 16 | 20 | 24 |
+| Unit tests/module | 2 | 4 | 6 |
+| Integration tests | 4 | 7 | 10 |
+| E2E tests | 8 | 12 | 16 |
+| Perf testing | 8 | 12 | 16 |
+
+### Management & Review
+| Task | Min | Typical | Max |
+|------|-----|---------|-----|
+| Kickoff + planning | 4 | 6 | 8 |
+| Sprint planning (per sprint) | 2 | 3 | 4 |
+| Code review + AI validation (per sprint) | 4 | 6 | 8 |
+| Technical documentation | 4 | 6 | 8 |
+| Go-live support | 4 | 6 | 8 |
+
+## AI Impact by Area
+
+| Phase | Time saved | Why |
+|-------|-----------|-----|
+| Boilerplate / CRUD | ~70% | AI generates most code |
+| UI components | ~60% | Layouts, forms, lists are routine |
+| Business logic | ~40% | AI helps, but logic needs human validation |
+| External integrations | ~30% | Undocumented APIs still need manual effort |
+| Architecture decisions | ~10% | Human judgment required |
+| Security / auth | ~20% | Careful review still mandatory |
+| Testing | ~50% | AI generates tests; edge cases need thought |
+| DevOps / Infra | ~30% | Config-heavy, less AI leverage |
 
 ## Multipliers
 | Factor | x |
@@ -53,6 +78,7 @@
 | Compliance | 1.3 |
 | Multi-language | 1.2 |
 | Multi-tenant | 1.3-1.5 |
+| No AI tooling (client restriction) | 2.0 |
 
 ## Buffer
 | Clarity | % |
