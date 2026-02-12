@@ -9,38 +9,38 @@ professional development workflow as a solo founder using Claude Code.
 
 ## What's Included
 
-| # | Component | Type | Purpose |
-|---|-----------|------|---------|
-| | **CONFIG** | | |
-| 1 | CLAUDE.md template | Config | Project constitution |
-| 2 | global-settings.json | Config | Hooks (Biome, build, protection, notifications) |
-| 3 | project-settings.json | Config | Safe per-project permissions |
-| | **SDLC SKILLS** | | |
-| 4 | /plan-feature | Skill | Plan features with actionable plan |
-| 5 | /implement | Skill | Implement tasks (references custom skills) |
-| 6 | /test-verify | Skill+fork | Testing + build verification + biome |
-| 7 | /review-code | Skill+fork | Code review (verifies conventions) |
-| 8 | /commit-ship | Skill | Git + PR with pre-flight checks |
-| 9 | /write-docs | Skill | Documentation |
-| 10 | /triage-bug | Skill | Bug diagnosis and classification |
-| 11 | /write-spec | Skill | Formal spec for complex features (selective SDD) |
-| 12 | /github-sync | Skill | Sync tasks/bugs with GitHub Issues |
-| | **BUSINESS SKILLS** | | |
-| 13 | /pdp-generator | Skill | Quotation: WBS + MH estimation + Excel |
-| 14 | /bootstrap-repo | Skill+fork | Quick repo onboarding |
-| 15 | /log-decision | Skill | Automatic ADRs |
-| 16 | /sprint-retro | Skill+fork | Retrospective + continuous improvement |
-| 17 | /time-track | Skill | Actual vs. estimated hours |
-| | **AGENTS** | | |
-| 18 | qa-tester | Agent | Isolated QA (tests + build + lint) |
-| 19 | security-reviewer | Agent | Security audit (read-only) |
-| | **HOOKS** | | |
-| 20 | File protection | PreToolUse | Blocks .env, .git, node_modules |
-| 21 | Per-file Biome | PostToolUse | Auto-fix lint+format per file |
-| 22 | Global Build + Biome | Stop | Full verification on finish |
-| 23 | Stop notification | Stop | macOS alert on finish |
-| 24 | Input notification | Notification | Alert when waiting for input |
-| 25 | Session logging | Stop | Log for time tracking |
+| #   | Component             | Type         | Purpose                                          |
+| --- | --------------------- | ------------ | ------------------------------------------------ |
+|     | **CONFIG**            |              |                                                  |
+| 1   | CLAUDE.md template    | Config       | Project constitution                             |
+| 2   | global-settings.json  | Config       | Hooks (Biome, build, protection, notifications)  |
+| 3   | project-settings.json | Config       | Safe per-project permissions                     |
+|     | **SDLC SKILLS**       |              |                                                  |
+| 4   | /plan-feature         | Skill        | Plan features with actionable plan               |
+| 5   | /implement            | Skill        | Implement tasks (references custom skills)       |
+| 6   | /test-verify          | Skill+fork   | Testing + build verification + biome             |
+| 7   | /review-code          | Skill+fork   | Code review (verifies conventions)               |
+| 8   | /commit-ship          | Skill        | Git + PR with pre-flight checks                  |
+| 9   | /write-docs           | Skill        | Documentation                                    |
+| 10  | /triage-bug           | Skill        | Bug diagnosis and classification                 |
+| 11  | /write-spec           | Skill        | Formal spec for complex features (selective SDD) |
+| 12  | /github-sync          | Skill        | Sync tasks/bugs with GitHub Issues               |
+|     | **BUSINESS SKILLS**   |              |                                                  |
+| 13  | /pdp-generator        | Skill        | Quotation: WBS + MH estimation + Excel           |
+| 14  | /bootstrap-repo       | Skill+fork   | Quick repo onboarding                            |
+| 15  | /log-decision         | Skill        | Automatic ADRs                                   |
+| 16  | /sprint-retro         | Skill+fork   | Retrospective + continuous improvement           |
+| 17  | /time-track           | Skill        | Actual vs. estimated hours                       |
+|     | **AGENTS**            |              |                                                  |
+| 18  | qa-tester             | Agent        | Isolated QA (tests + build + lint)               |
+| 19  | security-reviewer     | Agent        | Security audit (read-only)                       |
+|     | **HOOKS**             |              |                                                  |
+| 20  | File protection       | PreToolUse   | Blocks .env, .git, node_modules                  |
+| 21  | Per-file Biome        | PostToolUse  | Auto-fix lint+format per file                    |
+| 22  | Global Build + Biome  | Stop         | Full verification on finish                      |
+| 23  | Stop notification     | Stop         | macOS alert on finish                            |
+| 24  | Input notification    | Notification | Alert when waiting for input                     |
+| 25  | Session logging       | Stop         | Log for time tracking                            |
 
 ## Installation
 
@@ -89,11 +89,13 @@ cd solo-founder-team
 ### What it installs
 
 **Global** (`~/.claude/`):
+
 - 13 global skills in `~/.claude/skills/`
 - 2 agents in `~/.claude/agents/`
 - Hooks and settings in `~/.claude/settings.json`
 
 **Per project** (with `init`):
+
 - `CLAUDE.md` (template to edit)
 - `.claude/settings.json` (project permissions)
 - `docs/` (documentation structure)
@@ -115,79 +117,9 @@ mkdir -p .claude/skills/my-backend
 
 ## How It Works
 
-```mermaid
-flowchart TB
-    subgraph INSTALL["Installation (one-time)"]
-        A["npx github:fcojaviergon/solo-founder-team"] --> B["~/.claude/skills/\n14 global skills"]
-        A --> C["~/.claude/agents/\n2 agents"]
-        A --> D["~/.claude/settings.json\nhooks"]
-    end
-
-    subgraph PROJECT["Project Setup (per repo)"]
-        E["npx ... init"] --> F["CLAUDE.md\nproject constitution"]
-        E --> G[".claude/settings.json\npermissions"]
-        E --> H["docs/\nplans, decisions, retros"]
-    end
-
-    subgraph QUOTE["Quotation Phase"]
-        PDP["/pdp-generator\ngenerates WBS with\nmodules + estimates"]
-    end
-
-    subgraph WORKFLOW["Development Workflow (per module)"]
-        direction TB
-        W1["/write-spec"] -->|"complex modules\n10+ files"| W2
-        W2["/plan-feature"] --> W3["/implement"]
-        W3 --> W4["/test-verify"]
-        W4 --> W5["/review-code"]
-        W5 --> W6["/commit-ship"]
-    end
-
-    subgraph GITHUB["GitHub Issues (optional, opt-in)"]
-        direction TB
-        GH1["Parent issue\n[Feature] name"]
-        GH2["Task issues\n#101, #102, #103..."]
-        GH3["PR closes issues\nautomatically"]
-        GH1 --> GH2
-        GH2 --> GH3
-    end
-
-    subgraph HOOKS["Automatic Hooks (run in background)"]
-        H1["PreToolUse\nblock writes to\n.env .git/ node_modules/"]
-        H2["PostToolUse\nauto-format with\nBiome per file"]
-        H3["Stop\nbuild + lint check\n+ macOS notification"]
-    end
-
-    subgraph AGENTS["Subagents (isolated context)"]
-        AG1["qa-tester\ntests + build + lint"]
-        AG2["security-reviewer\nvulnerability scan"]
-    end
-
-    subgraph TRACKING["Tracking & Improvement"]
-        direction TB
-        BZ2["/time-track\nlog actual hours"] --> BZ3["/sprint-retro\ndetect deviations"]
-        BZ3 -->|"update\nestimates"| PDP
-    end
-
-    INSTALL --> PROJECT
-    PROJECT --> QUOTE
-    PDP -->|"simple modules"| W2
-    PDP -->|"complex modules"| W1
-    W2 -.->|"creates\nissues"| GH1
-    W3 -.->|"comments\nprogress"| GH2
-    W6 -.->|"PR closes\nissues"| GH3
-    WORKFLOW -.->|"triggered\nautomatically"| HOOKS
-    WORKFLOW -.->|"spawned by\nskills"| AGENTS
-    W6 -->|"after shipping"| BZ2
-
-    style INSTALL fill:#1a1a2e,stroke:#4a9eff,color:#fff
-    style PROJECT fill:#1a1a2e,stroke:#4a9eff,color:#fff
-    style QUOTE fill:#1b2d1b,stroke:#7bed9f,color:#fff
-    style WORKFLOW fill:#0d2137,stroke:#00d4aa,color:#fff
-    style GITHUB fill:#1c1c1c,stroke:#f0883e,color:#fff
-    style HOOKS fill:#2d1b36,stroke:#ff6b9d,color:#fff
-    style AGENTS fill:#2d1b36,stroke:#ff6b9d,color:#fff
-    style TRACKING fill:#1b2d1b,stroke:#7bed9f,color:#fff
-```
+<p align="center">
+  <img src="flow-sdlc.png" alt="Workflow for Solo Builders" width="600">
+</p>
 
 ### How Claude Code uses the kit
 
@@ -214,22 +146,24 @@ When you start from a quotation, the PDP becomes the roadmap:
 The kit can optionally sync tasks and bugs with GitHub Issues. This is **opt-in per project**.
 
 **How to enable:**
+
 1. When you run `/plan-feature` or `/triage-bug`, Claude will ask: "Sync to GitHub Issues?"
 2. If you accept, a `.github-issues` file is created in your project root
 3. From then on, all skills automatically create/update/close GitHub issues
 
 **What happens when enabled:**
 
-| Skill | GitHub action |
-|-------|---------------|
+| Skill           | GitHub action                             |
+| --------------- | ----------------------------------------- |
 | `/plan-feature` | Creates parent issue + one issue per task |
-| `/write-spec` | Creates epic issue for the spec |
-| `/implement` | Comments progress on task issues |
-| `/commit-ship` | Links PR with `Closes #NNN` to auto-close |
-| `/triage-bug` | Creates bug issues (auto for CRITICAL) |
-| `/github-sync` | Manual sync, status check, bulk close |
+| `/write-spec`   | Creates epic issue for the spec           |
+| `/implement`    | Comments progress on task issues          |
+| `/commit-ship`  | Links PR with `Closes #NNN` to auto-close |
+| `/triage-bug`   | Creates bug issues (auto for CRITICAL)    |
+| `/github-sync`  | Manual sync, status check, bulk close     |
 
 **Tracking format** — issue numbers are stored as HTML comments in your markdown files:
+
 ```markdown
 1. [ ] Add search UI — src/components/ <!-- gh:#101 -->
 2. [x] Create API endpoint — src/api/ <!-- gh:#102 -->
@@ -261,27 +195,27 @@ The kit can optionally sync tasks and bugs with GitHub Issues. This is **opt-in 
 
 ### Useful commands
 
-| What you want | What you type |
-|--------------|---------------|
-| New feature | `/plan-feature [description]` |
-| Implement | `/implement` or `/implement task 3` |
-| Test | `/test-verify` |
-| Review | `/review-code` |
-| Ship | `/commit-ship` |
-| Bug | `/triage-bug [description]` |
-| Formal spec (complex features) | `/write-spec [description]` |
-| Quote a project | `/pdp-generator [description]` |
-| Repo onboarding | `/bootstrap-repo` |
-| Log a decision | `/log-decision [what we decided]` |
-| Retrospective | `/sprint-retro` |
-| Log hours | `/time-track 3h on auth module` |
-| Check hours progress | `/time-track how much have we spent?` |
-| Document | `/write-docs [what to document]` |
-| Sync issues to GitHub | `/github-sync push` |
-| Check issue sync status | `/github-sync status` |
-| Close completed issues | `/github-sync close-done` |
-| Update kit | `npx github:fcojaviergon/solo-founder-team update` |
-| Check version | `npx github:fcojaviergon/solo-founder-team --version` |
+| What you want                  | What you type                                         |
+| ------------------------------ | ----------------------------------------------------- |
+| New feature                    | `/plan-feature [description]`                         |
+| Implement                      | `/implement` or `/implement task 3`                   |
+| Test                           | `/test-verify`                                        |
+| Review                         | `/review-code`                                        |
+| Ship                           | `/commit-ship`                                        |
+| Bug                            | `/triage-bug [description]`                           |
+| Formal spec (complex features) | `/write-spec [description]`                           |
+| Quote a project                | `/pdp-generator [description]`                        |
+| Repo onboarding                | `/bootstrap-repo`                                     |
+| Log a decision                 | `/log-decision [what we decided]`                     |
+| Retrospective                  | `/sprint-retro`                                       |
+| Log hours                      | `/time-track 3h on auth module`                       |
+| Check hours progress           | `/time-track how much have we spent?`                 |
+| Document                       | `/write-docs [what to document]`                      |
+| Sync issues to GitHub          | `/github-sync push`                                   |
+| Check issue sync status        | `/github-sync status`                                 |
+| Close completed issues         | `/github-sync close-done`                             |
+| Update kit                     | `npx github:fcojaviergon/solo-founder-team update`    |
+| Check version                  | `npx github:fcojaviergon/solo-founder-team --version` |
 
 ## Architecture
 
