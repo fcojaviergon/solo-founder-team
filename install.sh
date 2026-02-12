@@ -16,7 +16,7 @@
 
 set -e
 
-VERSION="1.2.0"
+VERSION="1.3.0"
 VERSION_FILE="$HOME/.claude/.solo-founder-version"
 
 BLUE='\033[0;34m'
