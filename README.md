@@ -217,6 +217,217 @@ The kit can optionally sync tasks and bugs with GitHub Issues. This is **opt-in 
 | Update kit                     | `npx github:fcojaviergon/solo-founder-team update`    |
 | Check version                  | `npx github:fcojaviergon/solo-founder-team --version` |
 
+## Use Cases
+
+### 1. Building a SaaS MVP from scratch
+
+You have a new idea and want to go from zero to deployed MVP:
+
+```bash
+# Day 1: Setup & Planning
+npx github:fcojaviergon/solo-founder-team init     # Setup the kit in your project
+/bootstrap-repo                                      # Get an overview of the current state
+/plan-feature user authentication with email+password # Plan the first feature
+
+# Day 1-2: Implement the plan
+/implement                                           # Picks up first story from active-plan.md
+/implement                                           # Next story...
+/test-verify                                         # Run tests + build + lint
+/commit-ship                                         # Commit with conventional message + PR
+
+# Day 3: Next feature
+/plan-feature subscription billing with Stripe
+/implement
+/test-verify
+/review-code                                         # Security check before shipping payments
+/commit-ship
+
+# End of week
+/sprint-retro                                        # What went well? What to improve?
+```
+
+### 2. Quoting a client project (freelancer/agency)
+
+A client sends you requirements and you need a professional quotation:
+
+```bash
+# Analyze their existing repo (if they have one)
+/bootstrap-repo                                      # Architecture summary in 2 minutes
+
+# Generate the PDP with WBS and hour estimates
+/pdp-generator e-commerce with inventory, payments, and admin panel
+
+# Output: docs/pdp-ecommerce.md with:
+#   - Module breakdown (auth, catalog, cart, checkout, admin)
+#   - Tasks per module with MH estimates
+#   - Risk analysis and assumptions
+#   - Excel file ready for the client proposal
+
+# Later, when the project starts:
+/plan-feature @docs/pdp-ecommerce.md                 # Transform PDP into user stories
+/time-track 4h on auth module                        # Track actual hours vs estimates
+/time-track how much have we spent?                  # Compare against PDP budget
+```
+
+### 3. Handling a production bug
+
+Something breaks in production at 2 AM:
+
+```bash
+# Report the bug
+/triage-bug users can't checkout — getting 500 on /api/checkout
+
+# Claude will:
+#   1. Search the codebase for the checkout endpoint
+#   2. Identify the root cause (e.g. null pointer on discount code)
+#   3. Classify severity (CRITICAL — affects all users)
+#   4. Fix it immediately (CRITICAL = no waiting)
+#   5. Run tests + build
+
+/commit-ship                                         # Ship the fix
+# → Creates PR with "fix(checkout): handle null discount code"
+
+# Log a decision if needed
+/log-decision removed optional discount field from checkout to prevent null errors
+```
+
+### 4. Complex feature with spec-first approach
+
+Building something that touches many files and has integrations:
+
+```bash
+# Step 1: Write a formal specification
+/write-spec real-time notifications with WebSocket, email, and push
+
+# Output: specs/real-time-notifications.md with:
+#   - System design, data flow diagram
+#   - API contracts, WebSocket events
+#   - Acceptance criteria per scenario
+#   - Edge cases and error handling
+
+# Step 2: Plan from the spec
+/plan-feature @specs/real-time-notifications.md
+
+# Step 3: Implement story by story
+/implement                                           # Story 1: WebSocket server setup
+/test-verify
+/implement                                           # Story 2: Notification service
+/test-verify
+/implement                                           # Story 3: Email integration
+/review-code                                         # Full review before merging
+/commit-ship
+```
+
+### 5. Onboarding to an inherited codebase
+
+You join a project or pick up a repo you haven't touched in months:
+
+```bash
+/bootstrap-repo
+# Output:
+#   - Stack: Next.js 14, Prisma, PostgreSQL, Tailwind
+#   - Architecture: App Router, server actions, clean separation
+#   - 847 files, 42 components, 12 API routes
+#   - DB: 15 tables, migrations up to date
+#   - Tests: 23 test files, vitest, ~60% coverage
+#   - Issues: 3 TODOs, 1 FIXME, no HACK markers
+
+# Now you have full context to start working
+/plan-feature add multi-language support
+```
+
+### 6. End-to-end SDLC with GitHub Issues
+
+Full traceability from planning to deployment:
+
+```bash
+# Plan creates GitHub issues automatically
+/plan-feature user profile with avatar upload
+# → Creates parent issue #45 + child issues #46, #47, #48
+
+# Implementation links to issues
+/implement                                           # Comments on #46: "Starting implementation"
+/test-verify                                         # Agent runs isolated QA
+/commit-ship                                         # PR body includes "Closes #46"
+
+# Check sync status anytime
+/github-sync status
+# → #45 open (2/3 tasks done), #46 closed, #47 closed, #48 open
+
+# Bulk close completed tasks
+/github-sync close-done
+```
+
+### 7. Logging decisions for your future self
+
+Record why you made important technical choices:
+
+```bash
+/log-decision chose Resend over SendGrid for transactional emails
+# Output: docs/decisions/2025-06-15-resend-over-sendgrid.md
+#   - Problem: Need transactional email service
+#   - Options: SendGrid (mature, complex), Resend (modern, simpler DX)
+#   - Decision: Resend — better DX, React Email support, sufficient for our scale
+#   - Consequences: Locked to Resend API, need migration plan if we outgrow
+
+/log-decision use server actions instead of API routes for mutations
+```
+
+### 8. Weekly retrospective and continuous improvement
+
+At the end of each sprint or week:
+
+```bash
+/sprint-retro
+# Claude analyzes:
+#   - git log from the past week
+#   - active-plan.md progress (completed vs planned)
+#   - Recent decisions and bugs
+#   - TODOs/FIXMEs introduced
+#
+# Output: docs/retros/2025-06-20-retro.md
+#   - What was done: 5 stories completed, 1 bug fixed
+#   - What went well: Auth module shipped ahead of estimate
+#   - What went wrong: Image upload took 2x estimated time
+#   - Action items: Add "file upload" multiplier to estimates
+#   - CLAUDE.md updates: "Always use presigned URLs for uploads"
+
+/time-track hours report                             # Compare actual vs estimated
+```
+
+### 9. Custom project skills
+
+Add project-specific skills for your stack:
+
+```bash
+# Create a frontend skill for your design system
+mkdir -p .claude/skills/my-frontend
+
+# .claude/skills/my-frontend/SKILL.md
+# ---
+# name: my-frontend
+# description: Frontend conventions for this project
+# ---
+# - Use shadcn/ui components, never raw HTML
+# - All pages use the AppLayout wrapper
+# - Forms use react-hook-form + zod validation
+# - Colors from design tokens only (no hardcoded hex)
+
+# Now /implement automatically loads your conventions
+/implement                                           # Reads your custom skill first
+```
+
+### Agents: When and how they activate
+
+Agents are **not invoked directly** — they're used by skills behind the scenes:
+
+| Agent               | Used by        | What it does                                  |
+| ------------------- | -------------- | --------------------------------------------- |
+| `qa-tester`         | `/test-verify` | Runs tests, build, and lint in an isolated context |
+| `security-reviewer` | `/review-code` | Scans for vulnerabilities (read-only, can't modify code) |
+
+Skills with `context: fork` run agents in a **separate context**, so heavy analysis doesn't pollute your main conversation. The agent does its work and returns a summary.
+
 ## Architecture
 
 ```
