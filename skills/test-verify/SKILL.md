@@ -7,7 +7,7 @@ description: >
   "test", "verify", "check", "does it work?".
 context: fork
 agent: general-purpose
-allowed-tools: Read, Grep, Glob, Bash, Write
+tools: Read, Grep, Glob, Bash, Write
 ---
 
 # Verify Implementation

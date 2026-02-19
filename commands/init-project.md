@@ -1,5 +1,5 @@
 ---
-description: Initialize a project for the Solo Founder SDLC Kit. Creates CLAUDE.md, .claude/settings.json, and docs/ structure. Use when setting up a new project or updating an existing one.
+description: Initialize a project for the Solo Founder SDLC Kit. Creates or updates CLAUDE.md, .claude/settings.json, and docs/ structure. Auto-detects your stack. Use when setting up a new project or integrating the kit into an existing one.
 argument-hint: [project-name]
 ---
 
@@ -12,11 +12,34 @@ You are setting up (or updating) a project for the Solo Founder SDLC Kit.
 1. Verify we are at the root of a git repository (check for `.git/` directory)
 2. If not at a git root, tell the user to navigate to their project root first and stop
 
-## Step 1: Project Settings
+## Step 1: Detect Project Stack
+
+Before creating anything, scan the project to understand its stack:
+
+1. Read `package.json` — extract name, scripts (build, test, dev, lint), dependencies
+2. Read `tsconfig.json` — check if TypeScript is used, strictness
+3. Read `biome.json` or `biome.jsonc` — check if Biome is configured
+4. Check for `.eslintrc*` or `prettier*` — detect linter/formatter
+5. Check for `requirements.txt`, `pyproject.toml`, `go.mod`, `Cargo.toml` — detect non-JS stacks
+6. Check for `Dockerfile`, `docker-compose.yml` — detect containerization
+7. Check for `next.config.*`, `nuxt.config.*`, `vite.config.*` — detect framework
+
+Build a stack summary from what you find. Examples:
+- "Next.js 15 + TypeScript + Tailwind + Biome + Vercel"
+- "Python FastAPI + PostgreSQL + Docker"
+- "Vite + React + TypeScript + ESLint"
+
+Extract the real commands from `package.json` scripts:
+- Build: whatever `scripts.build` is (e.g. `next build`, `vite build`)
+- Test: whatever `scripts.test` is (e.g. `vitest`, `jest`)
+- Dev: whatever `scripts.dev` is
+- Lint: whatever `scripts.lint` is, or `npx @biomejs/biome check --write ./src` if Biome
+
+## Step 2: Project Settings
 
 Check if `.claude/settings.json` exists:
 
-**If it does NOT exist**, create `.claude/settings.json` with these permissions:
+**If it does NOT exist**, create `.claude/settings.json` with permissions adapted to the detected stack:
 
 ```json
 {
@@ -25,12 +48,6 @@ Check if `.claude/settings.json` exists:
       "Read",
       "Glob",
       "Grep",
-      "Bash(npx @biomejs/biome *)",
-      "Bash(npm run build*)",
-      "Bash(npm run dev*)",
-      "Bash(npm run test*)",
-      "Bash(npm run lint*)",
-      "Bash(npx tsc --noEmit*)",
       "Bash(git status*)",
       "Bash(git diff*)",
       "Bash(git log*)",
@@ -53,29 +70,34 @@ Check if `.claude/settings.json` exists:
       "Bash(sudo *)",
       "Bash(chmod 777*)",
       "Bash(curl * | bash)",
-      "Bash(wget * | bash)",
-      "Bash(npx prettier*)"
+      "Bash(wget * | bash)"
     ]
   }
 }
 ```
 
-**If it already exists**, tell the user it already exists and skip this step.
+Then add to the `allow` array based on detected stack:
+- If npm/node project: add `"Bash(npm run build*)"`, `"Bash(npm run dev*)"`, `"Bash(npm run test*)"`, `"Bash(npm run lint*)"`, `"Bash(npx tsc --noEmit*)"`
+- If Biome detected: add `"Bash(npx @biomejs/biome *)"` and add `"Bash(npx prettier*)"` to deny
+- If Python project: add `"Bash(python *)"`, `"Bash(pip *)"`, `"Bash(pytest *)"`
+- If Docker detected: add `"Bash(docker compose *)"`, `"Bash(docker build *)"`
 
-## Step 2: CLAUDE.md
+**If it already exists**, tell the user and skip.
+
+## Step 3: CLAUDE.md
 
 Determine the project name: use `$ARGUMENTS` if provided, otherwise use the basename of the current directory.
 
 ### If CLAUDE.md does NOT exist
 
-Create it with this content, replacing `[PROJECT_NAME]` with the project name:
+Generate it using the detected stack information. Do NOT use generic placeholders — fill in real values:
 
 ```markdown
-# CLAUDE.md — [PROJECT_NAME]
+# CLAUDE.md — {project_name}
 
 ## Project
-[PROJECT_NAME] — [Brief description of what this project does]
-Stack: [e.g.: Next.js 15 + Supabase + Tailwind + Vercel]
+{project_name} — {brief description from package.json or ask user}
+Stack: {detected stack summary}
 
 ## Principles
 - Ship small, ship often. PRs < 300 lines.
@@ -85,27 +107,23 @@ Stack: [e.g.: Next.js 15 + Supabase + Tailwind + Vercel]
 - Every repeated Claude mistake becomes a rule in Learned Rules.
 
 ## Architecture
-[Describe your architectural pattern: monolith, modular monolith, microservices, etc.]
-[Main layers: API routes, services, repositories, components, etc.]
-See docs/architecture.md for detailed decisions.
+{describe based on what you found: directory structure, layers, patterns}
 
 ## Code Conventions
-- TypeScript strict mode
+{adapt based on detected stack:}
+{- If TypeScript: "TypeScript strict mode"}
+{- If Python: "Type hints required. Black formatting."}
+{- If Go: "Standard Go conventions. gofmt."}
 - English names. Comments only when they add value.
-- Components: PascalCase. Hooks: use + camelCase.
-- Files: kebab-case.tsx
+{- If React: "Components: PascalCase. Hooks: use + camelCase. Files: kebab-case.tsx"}
 
 ## Commands
-- Lint: `npx @biomejs/biome check --write ./src`
-- Build: `npm run build`
-- Test: `npm run test`
-- Type check: `npx tsc --noEmit`
-- Dev: `npm run dev`
-
-## Project Skills
-Custom per-project conventions in .claude/skills/:
-- Frontend: .claude/skills/frontend/SKILL.md
-- Backend: .claude/skills/backend/SKILL.md
+{fill from actual package.json scripts or detected tools:}
+- Build: `{detected build command}`
+- Test: `{detected test command}`
+- Dev: `{detected dev command}`
+- Lint: `{detected lint command}`
+- Type check: `{detected typecheck command if applicable}`
 
 ## Workflow
 Spec (complex only) -> Plan -> Implement -> Test -> Review -> Ship
@@ -125,22 +143,25 @@ Spec (complex only) -> Plan -> Implement -> Test -> Review -> Ship
 <!-- Claude adds rules here when it makes a mistake that should not repeat -->
 ```
 
+Important: replace ALL `{...}` with real detected values. If you cannot detect a value, ask the user.
+
 ### If CLAUDE.md ALREADY exists
 
-Do NOT overwrite it. Instead, perform a smart update:
+Do NOT overwrite it. Instead:
 
 1. Read the existing CLAUDE.md
-2. Identify which of the expected sections exist:
-   - Project, Principles, Architecture, Code Conventions, Commands, Project Skills, Workflow, Current Context, Learned Rules
-3. Report to the user:
-   - "Your CLAUDE.md has these sections: [list]"
-   - "Missing sections that could be useful: [list]"
-4. Ask the user: "Would you like me to add the missing sections? I will append them without modifying your existing content."
-5. If the user agrees, append only the missing sections at the end of the file
-6. **NEVER** overwrite or modify existing sections — the user's Architecture, Learned Rules, and other customized content is sacred
-7. Optionally offer to clean up formatting (consistent heading levels, trailing whitespace, etc.) but only if the user explicitly asks
+2. Check which of these sections exist:
+   - Principles, Workflow, Commands, Current Context, Learned Rules
+3. For missing sections, generate content adapted to the detected stack
+4. Present the changes to the user:
+   - "Your CLAUDE.md is missing these sections that the SDLC Kit uses:"
+   - Show each missing section with its generated content
+   - "Want me to add them to the end of your file?"
+5. If the user agrees, append only the missing sections
+6. **NEVER** overwrite or modify existing sections
+7. If "Commands" section exists but has different commands than detected, mention the difference but do not change it
 
-## Step 3: Docs Structure
+## Step 4: Docs Structure
 
 Create these directories and files only if they don't already exist:
 
@@ -179,10 +200,10 @@ Files (only if missing):
   date,project,module,task,actual_mh,estimated_mh,notes
   ```
 
-## Step 4: Report
+## Step 5: Report
 
-Tell the user what was created/updated. Then remind them:
-
-1. Edit `CLAUDE.md` with your stack, architecture, and conventions
-2. Add project-specific skills in `.claude/skills/` if needed
-3. Available skills: /plan-feature, /implement, /test-verify, /review-code, /commit-ship, /write-docs, /triage-bug, /write-spec, /github-sync, /pdp-generator, /bootstrap-repo, /log-decision, /sprint-retro, /time-track
+Tell the user what was created/updated, including:
+- Detected stack summary
+- What was generated vs what already existed
+- Remind them to review the generated CLAUDE.md and adjust anything that's off
+- Available skills: /plan-feature, /implement, /test-verify, /review-code, /commit-ship, /write-docs, /triage-bug, /write-spec, /github-sync, /pdp-generator, /bootstrap-repo, /log-decision, /sprint-retro, /time-track

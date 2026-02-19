@@ -8,7 +8,7 @@ description: >
   "what's here", "give me context", "bootstrap".
 context: fork
 agent: Explore
-allowed-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash
 ---
 
 # Repository Bootstrap

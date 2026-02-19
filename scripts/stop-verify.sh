@@ -9,6 +9,7 @@ command -v npx >/dev/null 2>&1 || exit 0
     npx @biomejs/biome check ./src --no-errors-on-unmatched > /tmp/biome-report.txt 2>&1 || true
   fi
   npm run build --if-present > /tmp/build-report.txt 2>&1 || true
+  mkdir -p ~/.claude 2>/dev/null
   echo "$(date +%Y-%m-%dT%H:%M:%S) STOP" >> ~/.claude/session-log.txt
 ) &
 

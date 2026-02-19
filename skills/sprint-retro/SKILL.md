@@ -7,7 +7,7 @@ description: >
   Trigger: "retro", "retrospective", "what did we learn", "week review".
 context: fork
 agent: Explore
-allowed-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash
 ---
 
 # Sprint Retro

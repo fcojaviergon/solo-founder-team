@@ -67,14 +67,13 @@ Inside Claude Code, run:
 /init-project
 ```
 
-This creates:
-- `CLAUDE.md` — project constitution (edit with your stack and conventions)
-- `.claude/settings.json` — safe project permissions
+This auto-detects your stack (`package.json`, `tsconfig.json`, `biome.json`, etc.) and creates:
+- `CLAUDE.md` — project constitution with real commands and stack info (no generic placeholders)
+- `.claude/settings.json` — permissions adapted to your detected tools
 - `docs/` — active plan, decisions, bugs, timesheet
 - `specs/` — for formal specifications
 
-If `CLAUDE.md` already exists, `/init-project` will analyze your existing file,
-report missing sections, and offer to add them without overwriting your content.
+If `CLAUDE.md` already exists, `/init-project` will detect missing sections (Workflow, Principles, Learned Rules, etc.) and offer to add them without overwriting your content.
 
 ### Migrating from v1.x (install.sh)
 
@@ -205,11 +204,8 @@ solo-founder-team/                  <- PLUGIN
 ├── hooks/
 │   └── hooks.json                  Lifecycle hooks
 ├── scripts/                        Hook helper scripts
-├── commands/
-│   └── init-project.md             Project setup command
-└── config/
-    ├── CLAUDE.md.template          Project constitution template
-    └── project-settings.json       Per-project permissions
+└── commands/
+    └── init-project.md             Project setup (auto-detects stack)
 
 my-project/                         <- YOUR PROJECT (after /init-project)
 ├── CLAUDE.md                       Project constitution
