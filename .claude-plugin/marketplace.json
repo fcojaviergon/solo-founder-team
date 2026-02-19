@@ -1,0 +1,41 @@
+{
+	"name": "solo-founder-team",
+	"owner": {
+		"name": "Francisco Gonzalez",
+		"email": "fcojaviergon@users.noreply.github.com"
+	},
+	"metadata": {
+		"description": "Complete SDLC Kit for solo founders and freelancers using Claude Code.",
+		"version": "2.0.0"
+	},
+	"plugins": [
+		{
+			"name": "solo-founder-team",
+			"description": "14 skills, 2 agents, hooks, and commands for a professional development workflow — planning, building, testing, and shipping.",
+			"source": "./",
+			"version": "2.0.0",
+			"author": {
+				"name": "Francisco Gonzalez"
+			},
+			"homepage": "https://github.com/fcojaviergon/solo-founder-team",
+			"category": "development",
+			"strict": false,
+			"skills": [
+				"./skills/plan-feature",
+				"./skills/implement",
+				"./skills/test-verify",
+				"./skills/review-code",
+				"./skills/commit-ship",
+				"./skills/write-docs",
+				"./skills/triage-bug",
+				"./skills/write-spec",
+				"./skills/github-sync",
+				"./skills/pdp-generator",
+				"./skills/bootstrap-repo",
+				"./skills/log-decision",
+				"./skills/sprint-retro",
+				"./skills/time-track"
+			]
+		}
+	]
+}

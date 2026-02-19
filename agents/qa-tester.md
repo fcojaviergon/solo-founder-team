@@ -3,7 +3,7 @@ name: qa-tester
 description: >
   Run complete quality verification in isolation.
   Run tests, verify build, check types, and validate lint.
-allowed-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash
 ---
 
 You are a QA engineer. Your job is to verify everything works.

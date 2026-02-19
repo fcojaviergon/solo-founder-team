@@ -1,51 +1,52 @@
 # CLAUDE.md — [PROJECT_NAME]
 
 ## Project
-[PROJECT_NAME] — [One-line description]
+[PROJECT_NAME] — [Brief description of what this project does]
 Stack: [e.g.: Next.js 15 + Supabase + Tailwind + Vercel]
-Solo founder: optimize for shipping speed with minimum viable quality.
 
 ## Principles
 - Ship small, ship often. PRs < 300 lines.
-- Tests for critical business logic. No 100% coverage.
-- Conventional commits always (feat/fix/chore/docs/refactor).
-- If something can fail in production, it needs error handling.
-- Every Claude mistake becomes a rule below.
+- Tests for critical business logic only. No 100% coverage mandate.
+- Conventional commits: feat/ fix/ chore/ docs/ refactor/.
+- Production-facing code needs error handling.
+- Every repeated Claude mistake becomes a rule in Learned Rules.
 
 ## Architecture
-See docs/architecture.md for full decisions.
-- [TODO: architectural pattern]
-- [TODO: main layers]
+[Describe your architectural pattern: monolith, modular monolith, microservices, etc.]
+[Main layers: API routes, services, repositories, components, etc.]
+See docs/architecture.md for detailed decisions.
 
 ## Code Conventions
 - TypeScript strict mode
-- Names in English, comments in English when they add value
-- Components: PascalCase. Hooks: use + camelCase
+- English names. Comments only when they add value.
+- Components: PascalCase. Hooks: use + camelCase.
 - Files: kebab-case.tsx
 
-## Tools
-- **Linter/Formatter**: Biome (DO NOT use Prettier or ESLint)
-- **Run lint**: `npx @biomejs/biome check --write ./src`
-- **Build**: `npm run build`
-- **Tests**: `npm run test`
-- **Type check**: `npx tsc --noEmit`
+## Commands
+- Lint: `npx @biomejs/biome check --write ./src`
+- Build: `npm run build`
+- Test: `npm run test`
+- Type check: `npx tsc --noEmit`
+- Dev: `npm run dev`
 
 ## Project Skills
-This project has custom skills that define specific conventions:
-- Frontend: .claude/skills/[YOUR-FRONTEND-SKILL]/SKILL.md
-- Backend: .claude/skills/[YOUR-BACKEND-SKILL]/SKILL.md
-Always consult these skills before implementing new code.
+Custom per-project conventions in .claude/skills/:
+- Frontend: .claude/skills/frontend/SKILL.md
+- Backend: .claude/skills/backend/SKILL.md
 
 ## Workflow
-Spec (only if complex) → Plan → Implement → Test → Review → Ship
-Global skills available at ~/.claude/skills/ for each phase.
-Use /write-spec only for features with 10+ files or integrations.
-Use subagents for heavy tasks that pollute context.
+Spec (complex only) -> Plan -> Implement -> Test -> Review -> Ship
+- /write-spec — only for features touching 10+ files or with integrations
+- /plan-feature — generates user stories with acceptance criteria
+- /implement — executes next pending story
+- /test-verify — runs tests, build, lint in isolation
+- /review-code — code review for bugs, security, simplicity
+- /commit-ship — commit + PR
 
 ## Current Context
-Active plan: docs/active-plan.md
-Specs: specs/ (complex features only)
+- Active plan: docs/active-plan.md
+- Specs: specs/
+- Decisions: docs/decisions/
 
 ## Learned Rules
-<!-- Add rules here every time Claude makes a repeated mistake -->
-<!-- Example: "Don't use fetch directly, always use the api.ts wrapper" -->
+<!-- Claude adds rules here when it makes a mistake that should not repeat -->
