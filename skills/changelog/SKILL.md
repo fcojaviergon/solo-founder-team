@@ -68,6 +68,9 @@ Produce a markdown document with this structure:
 
 ### Infrastructure
 - {CI/CD, dependency, or config changes}
+
+### Docs
+- {documentation changes}
 ```
 
 ## Rules

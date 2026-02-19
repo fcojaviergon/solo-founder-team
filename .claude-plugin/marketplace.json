@@ -1,5 +1,5 @@
 {
-	"name": "solo-founder-team",
+	"name": "solo-founder-tech-team",
 	"owner": {
 		"name": "Francisco Gonzalez",
 		"email": "fcojaviergon@users.noreply.github.com"
@@ -10,14 +10,14 @@
 	},
 	"plugins": [
 		{
-			"name": "solo-founder-team",
+			"name": "solo-founder-tech-team",
 			"description": "15 skills, 2 agents, hooks, and commands for a professional development workflow — planning, building, testing, and shipping.",
 			"source": "./",
 			"version": "2.0.0",
 			"author": {
 				"name": "Francisco Gonzalez"
 			},
-			"homepage": "https://github.com/fcojaviergon/solo-founder-team",
+			"homepage": "https://github.com/fcojaviergon/solo-founder-tech-team",
 			"category": "development",
 			"strict": false,
 			"skills": [

@@ -1,7 +1,7 @@
-# Solo Founder SDLC Kit for Claude Code
+# Solo Founder Tech Team for Claude Code
 
 <p align="center">
-  <img src="banner.png" alt="Solo Founder Team — Multi-Agent Workflow for Solo Builders" width="600">
+  <img src="banner.png" alt="Solo Founder Tech Team — Multi-Agent Workflow for Solo Builders" width="600">
 </p>
 
 Complete kit of Skills, Agents, Hooks, and configuration for a
@@ -47,8 +47,8 @@ professional development workflow as a solo founder using Claude Code.
 Inside Claude Code, run:
 
 ```
-/plugin marketplace add fcojaviergon/solo-founder-team
-/plugin install solo-founder-team@solo-founder-team
+/plugin marketplace add fcojaviergon/solo-founder-tech-team
+/plugin install solo-founder-tech-team@solo-founder-tech-team
 ```
 
 That's it. All 15 skills, 2 agents, hooks, and commands are now available globally.
@@ -56,8 +56,8 @@ That's it. All 15 skills, 2 agents, hooks, and commands are now available global
 ### Alternative: local development
 
 ```bash
-git clone https://github.com/fcojaviergon/solo-founder-team.git
-claude --plugin-dir /path/to/solo-founder-team
+git clone https://github.com/fcojaviergon/solo-founder-tech-team.git
+claude --plugin-dir /path/to/solo-founder-tech-team
 ```
 
 ### Initialize your project
@@ -83,7 +83,7 @@ If you previously installed via `npx` or `install.sh`:
 1. Remove old skills: `rm -rf ~/.claude/skills/{plan-feature,implement,test-verify,review-code,commit-ship,write-docs,triage-bug,write-spec,github-sync,pdp-generator,bootstrap-repo,log-decision,sprint-retro,time-track}`
 2. Remove old agents: `rm -f ~/.claude/agents/{qa-tester,security-reviewer}.md`
 3. Remove hooks from `~/.claude/settings.json` (or restore a backup)
-4. Install the plugin: `/plugin marketplace add fcojaviergon/solo-founder-team` then `/plugin install solo-founder-team@solo-founder-team`
+4. Install the plugin: `/plugin marketplace add fcojaviergon/solo-founder-tech-team` then `/plugin install solo-founder-tech-team@solo-founder-tech-team`
 5. Run `/init-project` in each project
 
 ## How It Works
@@ -179,7 +179,7 @@ The kit can optionally sync tasks and bugs with GitHub Issues. This is **opt-in 
 ## Plugin Architecture
 
 ```
-solo-founder-team/                  <- PLUGIN
+solo-founder-tech-team/                  <- PLUGIN
 ├── .claude-plugin/
 │   └── plugin.json                 Plugin manifest
 ├── skills/                         15 reusable skills

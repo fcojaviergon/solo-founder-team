@@ -1,9 +1,9 @@
 {
-	"name": "solo-founder-team",
+	"name": "solo-founder-tech-team",
 	"version": "2.0.0",
 	"description": "SDLC Kit for Claude Code — Skills, Agents, Hooks for solo founders (Claude Code Plugin)",
 	"bin": {
-		"solo-founder-team": "./install.sh"
+		"solo-founder-tech-team": "./install.sh"
 	},
 	"files": [
 		"install.sh",
