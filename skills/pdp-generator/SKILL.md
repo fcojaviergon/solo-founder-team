@@ -188,7 +188,7 @@ most tasks. Add buffer for complex integrations and security-sensitive areas.
 9. Exclusions
 
 **Document 2: Excel** (docs/pdp-[name].xlsx)
-Use script: `python ~/.claude/skills/pdp-generator/scripts/generate_pdp_xlsx.py`
+Use script: `python "$(find ~/.claude -path '*/solo-founder-team/skills/pdp-generator/scripts/generate_pdp_xlsx.py' 2>/dev/null | head -1)"`
 Sheets: Detailed WBS, Summary by Module, Summary by Profile,
 Cost Calculator (USD + CLP with editable rates)
 

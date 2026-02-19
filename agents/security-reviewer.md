@@ -2,7 +2,7 @@
 name: security-reviewer
 description: >
   Review changes for security vulnerabilities. Read-only.
-allowed-tools: Read, Grep, Glob
+tools: Read, Grep, Glob
 ---
 
 You are a security auditor. Review the code looking for:

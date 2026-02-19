@@ -1,0 +1,54 @@
+{
+	"hooks": {
+		"PreToolUse": [
+			{
+				"matcher": "Edit|Write",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "${CLAUDE_PLUGIN_ROOT}/scripts/file-protection.sh"
+					}
+				]
+			}
+		],
+		"PostToolUse": [
+			{
+				"matcher": "Edit|Write",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "${CLAUDE_PLUGIN_ROOT}/scripts/biome-format.sh"
+					}
+				]
+			}
+		],
+		"Stop": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "${CLAUDE_PLUGIN_ROOT}/scripts/stop-verify.sh"
+					}
+				]
+			},
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "${CLAUDE_PLUGIN_ROOT}/scripts/notify-macos.sh finished"
+					}
+				]
+			}
+		],
+		"Notification": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "${CLAUDE_PLUGIN_ROOT}/scripts/notify-macos.sh attention"
+					}
+				]
+			}
+		]
+	}
+}
