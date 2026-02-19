@@ -43,12 +43,19 @@ professional development workflow as a solo founder using Claude Code.
 
 ### As a Claude Code Plugin (recommended)
 
-```bash
-# Install from local clone:
-git clone https://github.com/fcojaviergon/solo-founder-team.git
-claude plugin add /path/to/solo-founder-team
+Inside Claude Code, run:
 
-# Or use directly without installing:
+```
+/plugin marketplace add fcojaviergon/solo-founder-team
+/plugin install solo-founder-team@solo-founder-team
+```
+
+That's it. All 14 skills, 2 agents, hooks, and commands are now available globally.
+
+### Alternative: local development
+
+```bash
+git clone https://github.com/fcojaviergon/solo-founder-team.git
 claude --plugin-dir /path/to/solo-founder-team
 ```
 
@@ -76,7 +83,7 @@ If you previously installed via `npx` or `install.sh`:
 1. Remove old skills: `rm -rf ~/.claude/skills/{plan-feature,implement,test-verify,review-code,commit-ship,write-docs,triage-bug,write-spec,github-sync,pdp-generator,bootstrap-repo,log-decision,sprint-retro,time-track}`
 2. Remove old agents: `rm -f ~/.claude/agents/{qa-tester,security-reviewer}.md`
 3. Remove hooks from `~/.claude/settings.json` (or restore a backup)
-4. Install the plugin with one of the methods above
+4. Install the plugin: `/plugin marketplace add fcojaviergon/solo-founder-team` then `/plugin install solo-founder-team@solo-founder-team`
 5. Run `/init-project` in each project
 
 ## How It Works
