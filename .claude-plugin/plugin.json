@@ -1,19 +1,8 @@
 {
 	"name": "solo-founder-tech-team",
-	"version": "2.0.0",
 	"description": "Complete SDLC Kit for solo founders and freelancers — 15 skills, 2 agents, hooks for planning, building, testing, and shipping with Claude Code.",
 	"author": {
 		"name": "Francisco Gonzalez",
-		"url": "https://github.com/fcojaviergon"
-	},
-	"homepage": "https://github.com/fcojaviergon/solo-founder-tech-team",
-	"keywords": [
-		"sdlc",
-		"solo-founder",
-		"freelancer",
-		"workflow",
-		"planning",
-		"testing",
-		"shipping"
-	]
+		"email": "fcojaviergon@users.noreply.github.com"
+	}
 }
