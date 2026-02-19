@@ -1,11 +1,11 @@
 ---
-description: Initialize a project for the Solo Founder SDLC Kit. Creates or updates CLAUDE.md, .claude/settings.json, and docs/ structure. Auto-detects your stack. Use when setting up a new project or integrating the kit into an existing one.
+description: Initialize a project for the Solo Founder Tech Team. Creates or updates CLAUDE.md, .claude/settings.json, and docs/ structure. Auto-detects your stack. Use when setting up a new project or integrating the kit into an existing one.
 argument-hint: [project-name]
 ---
 
 # Initialize Project: $ARGUMENTS
 
-You are setting up (or updating) a project for the Solo Founder SDLC Kit.
+You are setting up (or updating) a project for the Solo Founder Tech Team.
 
 ## Pre-checks
 
@@ -70,7 +70,8 @@ Check if `.claude/settings.json` exists:
       "Bash(sudo *)",
       "Bash(chmod 777*)",
       "Bash(curl * | bash)",
-      "Bash(wget * | bash)"
+      "Bash(wget * | bash)",
+      "Bash(npx prettier*)"
     ]
   }
 }

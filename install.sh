@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-# Solo Founder SDLC Kit — v2.0 Migration Notice
+# Solo Founder Tech Team — v2.0 Migration Notice
 # ============================================================
 # This project is now a Claude Code plugin.
 # The install.sh script is deprecated in favor of the plugin system.
@@ -25,14 +25,14 @@ KIT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd)"
 
 echo ""
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${BOLD}  Solo Founder SDLC Kit v2.0 — Now a Claude Code Plugin${NC}"
+echo -e "${BOLD}  Solo Founder Tech Team v2.0 — Now a Claude Code Plugin${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
 echo -e "  This kit is now distributed as a ${GREEN}Claude Code plugin${NC}."
 echo ""
 echo -e "  ${BOLD}Install (inside Claude Code):${NC}"
-echo -e "  ${BLUE}/plugin marketplace add fcojaviergon/solo-founder-team${NC}"
-echo -e "  ${BLUE}/plugin install solo-founder-team@solo-founder-team${NC}"
+echo -e "  ${BLUE}/plugin marketplace add fcojaviergon/solo-founder-tech-team${NC}"
+echo -e "  ${BLUE}/plugin install solo-founder-tech-team@solo-founder-tech-team${NC}"
 echo ""
 echo -e "  ${BOLD}Or use locally without installing:${NC}"
 echo -e "  ${BLUE}claude --plugin-dir ${KIT_DIR}${NC}"
