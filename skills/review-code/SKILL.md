@@ -7,7 +7,7 @@ description: >
   "review", "code review", "check this".
 context: fork
 agent: Explore
-allowed-tools: Read, Grep, Glob
+tools: Read, Grep, Glob
 ---
 
 # Code Review

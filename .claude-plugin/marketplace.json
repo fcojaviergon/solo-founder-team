@@ -11,7 +11,7 @@
 	"plugins": [
 		{
 			"name": "solo-founder-team",
-			"description": "14 skills, 2 agents, hooks, and commands for a professional development workflow — planning, building, testing, and shipping.",
+			"description": "15 skills, 2 agents, hooks, and commands for a professional development workflow — planning, building, testing, and shipping.",
 			"source": "./",
 			"version": "2.0.0",
 			"author": {
@@ -34,7 +34,8 @@
 				"./skills/bootstrap-repo",
 				"./skills/log-decision",
 				"./skills/sprint-retro",
-				"./skills/time-track"
+				"./skills/time-track",
+				"./skills/changelog"
 			]
 		}
 	]

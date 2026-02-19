@@ -42,7 +42,8 @@ If either fails, fix first. DO NOT ship broken code.
      (GitHub auto-closes these issues when the PR is merged)
    - If there's a parent feature issue (look for `<!-- gh-parent:#NNN -->` in active-plan.md header):
      - `gh issue comment NNN --body "Shipped in PR #<pr-number>"`
-7. Report: PR URL, linked issues, and recommended next step
+7. Report: PR URL, linked issues, and suggest next step
+   - If this was a significant feature or release, suggest: "Run `/changelog` to generate release notes"
 
 ## Rules
 - If the diff is > 500 lines, STOP and ask if we should

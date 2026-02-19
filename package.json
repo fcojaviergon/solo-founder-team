@@ -8,7 +8,6 @@
 	"files": [
 		"install.sh",
 		".claude-plugin/",
-		"config/",
 		"skills/",
 		"agents/",
 		"hooks/",
