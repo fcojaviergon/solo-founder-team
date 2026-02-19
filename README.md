@@ -28,16 +28,17 @@ professional development workflow as a solo founder using Claude Code.
 | 12  | /log-decision         | Skill        | Automatic ADRs                                   |
 | 13  | /sprint-retro         | Skill+fork   | Retrospective + continuous improvement           |
 | 14  | /time-track           | Skill        | Actual vs. estimated hours                       |
+| 15  | /changelog            | Skill        | Functional changelog from git commits            |
 |     | **COMMANDS**          |              |                                                  |
-| 15  | /init-project         | Command      | Initialize project (CLAUDE.md, docs/, settings)  |
+| 16  | /init-project         | Command      | Initialize project (auto-detects stack)          |
 |     | **AGENTS**            |              |                                                  |
-| 16  | qa-tester             | Agent        | Isolated QA (tests + build + lint)               |
-| 17  | security-reviewer     | Agent        | Security audit (read-only)                       |
+| 17  | qa-tester             | Agent        | Isolated QA (tests + build + lint)               |
+| 18  | security-reviewer     | Agent        | Security audit (read-only)                       |
 |     | **HOOKS**             |              |                                                  |
-| 18  | File protection       | PreToolUse   | Blocks .env, .git, node_modules                  |
-| 19  | Per-file Biome        | PostToolUse  | Auto-fix lint+format per file                    |
-| 20  | Global Build + Biome  | Stop         | Full verification on finish                      |
-| 21  | Notifications         | Stop/Notif   | macOS alerts on finish and input needed           |
+| 19  | File protection       | PreToolUse   | Blocks .env, .git, node_modules                  |
+| 20  | Per-file Biome        | PostToolUse  | Auto-fix lint+format per file                    |
+| 21  | Global Build + Biome  | Stop         | Full verification on finish                      |
+| 22  | Notifications         | Stop/Notif   | macOS alerts on finish and input needed           |
 
 ## Installation
 
@@ -50,7 +51,7 @@ Inside Claude Code, run:
 /plugin install solo-founder-team@solo-founder-team
 ```
 
-That's it. All 14 skills, 2 agents, hooks, and commands are now available globally.
+That's it. All 15 skills, 2 agents, hooks, and commands are now available globally.
 
 ### Alternative: local development
 
@@ -173,6 +174,7 @@ The kit can optionally sync tasks and bugs with GitHub Issues. This is **opt-in 
 | Check hours progress           | `/time-track how much have we spent?`     |
 | Document                       | `/write-docs [what to document]`          |
 | Sync issues to GitHub          | `/github-sync push`                       |
+| Generate changelog             | `/changelog` or `/changelog v1.0..v2.0`   |
 
 ## Plugin Architecture
 
@@ -180,7 +182,7 @@ The kit can optionally sync tasks and bugs with GitHub Issues. This is **opt-in 
 solo-founder-team/                  <- PLUGIN
 ├── .claude-plugin/
 │   └── plugin.json                 Plugin manifest
-├── skills/                         14 reusable skills
+├── skills/                         15 reusable skills
 │   ├── plan-feature/
 │   ├── implement/
 │   ├── test-verify/
@@ -197,7 +199,8 @@ solo-founder-team/                  <- PLUGIN
 │   ├── bootstrap-repo/
 │   ├── log-decision/
 │   ├── sprint-retro/
-│   └── time-track/
+│   ├── time-track/
+│   └── changelog/
 ├── agents/                         2 isolated agents
 │   ├── qa-tester.md
 │   └── security-reviewer.md
